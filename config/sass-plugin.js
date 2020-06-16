@@ -42,7 +42,8 @@ const getStyleLoaders = (cssOptions, preProcessor) => {
 };
 
 module.exports = {
-  addSassPlugin: (config) => {
+  addSassPlugin: (defaultConfig) => {
+	let config = defaultConfig
   config.plugins.push(new MiniCssExtractPlugin({
     filename: 'static/css/bundle.[contenthash:8].css',
     chunkFilename: 'static/css/[name].[contenthash:8].chunk.css',
