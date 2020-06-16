@@ -14,7 +14,7 @@ import {
   NavbarText,
 } from 'reactstrap'
 
-const Example = () => {
+const AnotherRoute = () => {
   const [isOpen, setIsOpen] = useState(false)
 
   const toggle = () => setIsOpen(!isOpen)
@@ -53,4 +53,4 @@ const Example = () => {
   )
 }
 
-export default Example
+export default AnotherRoute

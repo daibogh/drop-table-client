@@ -57,8 +57,8 @@ server
       ${linkTags}
       ${styleTags}
       ${assets.client.css
-        ? `<link rel="stylesheet" href="${assets.client.css}">`
-        : ''}
+    ? `<link rel="stylesheet" href="${assets.client.css}">`
+    : ''}
   </head>
   <body>
       <div id='root'>${markup}</div>

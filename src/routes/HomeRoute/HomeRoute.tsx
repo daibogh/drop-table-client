@@ -1,9 +1,9 @@
 import React from 'react'
 import { Button } from 'reactstrap'
-import { counterAtom, increment, decrement } from '../stores/counter'
+import { counterAtom, increment, decrement } from '../../stores/counter'
 import { useAtom, useAction } from '@reatom/react'
 
-const BodyPart: React.FC = () => {
+const HomeRoute: React.FC = () => {
   const atomValue = useAtom(counterAtom)
   const inc = useAction(increment)
   const dec = useAction(decrement)
@@ -20,4 +20,4 @@ const BodyPart: React.FC = () => {
   )
 }
 
-export default BodyPart
+export default HomeRoute
