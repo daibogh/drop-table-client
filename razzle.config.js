@@ -11,7 +11,7 @@ module.exports = {
   plugins: [
     'babel-ts',
     'bundle-analyzer',
-    'serviceworker'
+    // 'serviceworker'
   ],
   modify: (defaultConfig, { target, dev }, webpack) => {
 
