@@ -4,12 +4,21 @@ import { BrowserRouter } from 'react-router-dom'
 import * as OfflinePluginRuntime from 'offline-plugin/runtime'
 OfflinePluginRuntime.install()
 import App from './App'
+import { createStore } from '@reatom/core'
+import { connectReduxDevtools } from '@reatom/debug'
+import { context } from '@reatom/react'
+
+export const store = createStore((window as any).__INITIAL_STATE__)
+
+// connectReduxDevtools(store)
 
 hydrate(
   <BrowserRouter>
-    <App />
+    <context.Provider value={store}>
+      <App />
+    </context.Provider>
   </BrowserRouter>,
-  document.getElementById('root')
+  document.getElementById('root'),
 )
 
 if (module.hot) {

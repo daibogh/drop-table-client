@@ -10,5 +10,5 @@ export const routes = [
   {
     path: "/",
     component: HomeRoute
-  },
+  }
 ]

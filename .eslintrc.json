@@ -34,6 +34,8 @@
     "rules": {
         "@typescript-eslint/explicit-module-boundary-types": "off",
         "indent": ["error", 2],
-        "semi": ["error","never"]
+        "semi": ["error","never"],
+        "@typescript-eslint/no-explicit-any": "off",
+        "react/prop-types": "off"
     }
 }

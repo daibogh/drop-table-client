@@ -6,20 +6,17 @@ import { context } from '@reatom/react'
 import { connectReduxDevtools } from '@reatom/debug'
 import { renderRoutes } from 'react-router-config'
 import { routes } from './routes'
-const Header = loadable(() => import('./components/Header'))
-const Footer = loadable(() => import('./components/Footer'))
+import Header from './components/Header'
+import Footer from './components/Footer'
 
 
 const App: React.FC = () => {
-  // create stateful context for atoms execution
-  const store = createStore()
-  useEffect(() => connectReduxDevtools(store), [])
   return (
-    <context.Provider value={store}>
+    <>
       <Header />
-      {renderRoutes(routes)}
+      {renderRoutes(routes as any[])}
       <Footer />
-    </context.Provider>
+    </>
   )
 }
 
