@@ -6,7 +6,7 @@ module.exports = {
     // add loadable webpack plugin only
     // when we are building the client bundle
     if (target === 'web') {
-      const filename = path.resolve(__dirname, 'build');
+      const filename = path.resolve(__dirname,'../', 'build');
 
       // saving stats file to build folder
       // without this, stats files will go into

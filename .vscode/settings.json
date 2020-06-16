@@ -1,0 +1,26 @@
+{
+  "editor.formatOnSave": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+
+  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact", "json"],
+  "[json]": {
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": false
+    }
+  },
+  "[markdown]": {
+    "editor.formatOnSave": true
+  },
+  "[graphql]": {
+    "editor.formatOnSave": true
+  },
+  "[scss]": {
+    "editor.formatOnSave": true
+  },
+  "scss.validate": false,
+  "eslint.packageManager": "yarn",
+  "typescript.tsdk": "node_modules/typescript/lib"
+}

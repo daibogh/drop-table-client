@@ -1143,6 +1143,11 @@
   resolved "https://registry.yarnpkg.com/@reatom/core/-/core-1.1.3.tgz#503605fde1a1a64a7c097409c39ec19747531449"
   integrity sha512-D9pzM/jb9A5jiDqz70KRe/zDmao2AP23PxD0WMTrvbBe5g6KnT5BNrBeyv/s6g4NEcFFQQLvu6/7bhWjpddhUg==
 
+"@reatom/debug@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@reatom/debug/-/debug-1.2.0.tgz#1e6d2f05b88882a47a0d59b83f88242ec3dceb55"
+  integrity sha512-Obf1rI++1CKZyp1P8HY3pCCQ5GUGrYDZn8dbMaqCzvWd6kyZDFtaf51gfdnUnLwZZ8EHFYkpwgHtvbJXSv+b3w==
+
 "@reatom/react@^1.1.3":
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/@reatom/react/-/react-1.1.3.tgz#a17f1b8423ccc83ec3c9afafa6c52ed50797a8c1"
@@ -1380,6 +1385,15 @@
   integrity sha512-ykkPQ+5nFknnlU6lDd947WbQ6TE3NNzbQAkInC2EKY1qeYdTKp7onFusmYZb+ityzx2YviqT6BXSu+LyWWJwcA==
   dependencies:
     "@types/react" "*"
+
+"@types/react-router-config@^5.0.1":
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/@types/react-router-config/-/react-router-config-5.0.1.tgz#54da8418190ee47484dee279975e2b8038fb8b5d"
+  integrity sha512-D4srFL4XP21GjWWnM7mL8j+Nrrw13pc2TYr57WTHJxU9YTxnrXL7p1iqGtwecgwhyeXJSm4WrGwq0SOgSALVbA==
+  dependencies:
+    "@types/history" "*"
+    "@types/react" "*"
+    "@types/react-router" "*"
 
 "@types/react-router-dom@^4.3.4":
   version "4.3.5"
@@ -9163,6 +9177,13 @@ react-popper@^1.3.6:
     prop-types "^15.6.1"
     typed-styles "^0.0.7"
     warning "^4.0.2"
+
+react-router-config@^5.1.1:
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/react-router-config/-/react-router-config-5.1.1.tgz#0f4263d1a80c6b2dc7b9c1902c9526478194a988"
+  integrity sha512-DuanZjaD8mQp1ppHjgnnUnyOlqYXZVjnov/JzFhjLEwd3Z4dYjMSnqrEzzGThH47vpCOqPPwJM2FtthLeJ8Pbg==
+  dependencies:
+    "@babel/runtime" "^7.1.2"
 
 react-router-dom@^5.0.1:
   version "5.2.0"
