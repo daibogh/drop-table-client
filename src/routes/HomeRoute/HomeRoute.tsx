@@ -10,14 +10,20 @@ import { Store, getState } from '@reatom/core'
 import { rootAtom } from '../RootRoute/RootRoute.model'
 
 const HomeRoute: React.FC = () => {
-  const posts = usePosts()
+  const {isLoading, postsList} = usePosts()
   const value = useAtom(rootAtom).testAtom
   const atomValue = useAtom(counterAtom)
   const inc = useAction(() => increment())
   const dec = useAction(() => decrement())
+  if (isLoading){
+    return <>...</>
+  }
+  if (!postsList) {
+    return <>no data...</>
+  }
   return (
     <>
-      <code>{JSON.stringify(posts)}</code>
+      <code>{JSON.stringify(postsList)}</code>
       <Button color="primary" onClick={inc}>
         click to increment
       </Button>
