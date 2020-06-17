@@ -10,7 +10,8 @@
     "lint": "eslint --ext 'js,jsx,ts,tsx' .",
     "analyze": "BUNDLE_ANALYZE=true razzle build",
     "check-typescript": "tsc --project .tsconfig --noEmit",
-    "prettier": "prettier --write ./src"
+    "prettier": "prettier --write ./src",
+    "cc": "create-component"
   },
   "pre-commit": [
     "check-typescript",
