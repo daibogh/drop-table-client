@@ -1,11 +1,12 @@
 import { combine, declareAction, declareAtom } from '@reatom/core'
 import { useEffect } from 'react'
-import axios from 'axios'
+
 import { useAction, useAtom } from '@reatom/react'
+import { getFetcher } from '~/api/fetchers'
 
 const loadPostsSuccess = declareAction<any>()
 export const loadPostsActions = declareAction(async (_, { dispatch }) => {
-  const { data } = await axios.get(
+  const { data } = await getFetcher(
     'http://jsonplaceholder.typicode.com/posts?_start=0&_limit=5'
   )
   dispatch(loadPostsSuccess(data))
