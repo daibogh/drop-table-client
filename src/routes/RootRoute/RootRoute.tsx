@@ -4,6 +4,7 @@ import { createPage } from '../../libs/ssr/createPage'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import { renderRoutes, RouteConfigComponentProps } from 'react-router-config'
+import { rootAtom } from './RootRoute.model'
 // const Header = loadable(() => import('../../components/Header'))
 // const Footer = loadable(() => import('../../components/Footer'))
 
@@ -15,4 +16,4 @@ const RootRoute:React.FC<RouteConfigComponentProps<any>> = ({ route }) => (
   </div>
 )
 
-export default createPage(RootRoute, {model: null,getInitialData: null})
+export default createPage(RootRoute, { model: rootAtom, getInitialData: null })

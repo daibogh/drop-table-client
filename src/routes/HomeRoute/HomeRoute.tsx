@@ -8,9 +8,11 @@ import { Helmet } from 'react-helmet-async'
 import SEOTextContainer from '../../containers/SEOTextContainer'
 import { Store, getState } from '@reatom/core'
 import { TREE } from '@reatom/core/build/shared'
+import { rootAtom } from '../RootRoute/RootRoute.model'
 
 const HomeRoute: React.FC = () => {
   const posts = usePosts()
+  const value = useAtom(rootAtom).testAtom
   return (
     <>
       {/* <Button color="primary" onClick={inc}>
@@ -21,6 +23,7 @@ const HomeRoute: React.FC = () => {
       </Button>
       <div>the value is {atomValue}</div> */}
       {JSON.stringify(posts)}
+      <Button>{value}</Button>
     </>
   )
 }
