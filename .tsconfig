@@ -28,8 +28,8 @@
     "target": "es2016",
     "baseUrl": ".",
     "paths": {
-      "libs": [
-        "/src/libs"
+      "~/*": [
+        "src/*"
       ]
     }
   },
@@ -41,7 +41,8 @@
     "acceptance-tests",
     "webpack",
     "jest",
-    "razzle.config.js"
+    "razzle.config.js",
+    "blueprint-templates"
   ],
   "types": [
     "typePatches",

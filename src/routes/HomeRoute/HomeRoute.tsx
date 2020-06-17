@@ -7,22 +7,24 @@ import { postsPageAtom, loadPostsActions, usePosts } from './HomeRoute.model'
 import { Helmet } from 'react-helmet-async'
 import SEOTextContainer from '../../containers/SEOTextContainer'
 import { Store, getState } from '@reatom/core'
-import { TREE } from '@reatom/core/build/shared'
 import { rootAtom } from '../RootRoute/RootRoute.model'
 
 const HomeRoute: React.FC = () => {
   const posts = usePosts()
   const value = useAtom(rootAtom).testAtom
+  const atomValue = useAtom(counterAtom)
+  const inc = useAction(() => increment())
+  const dec = useAction(() => decrement())
   return (
     <>
-      {/* <Button color="primary" onClick={inc}>
+      <code>{JSON.stringify(posts)}</code>
+      <Button color="primary" onClick={inc}>
         click to increment
       </Button>
       <Button color="danger" onClick={dec}>
         click to decrement
       </Button>
-      <div>the value is {atomValue}</div> */}
-      {JSON.stringify(posts)}
+      <div>the value is {atomValue}</div>
       <Button>{value}</Button>
     </>
   )
