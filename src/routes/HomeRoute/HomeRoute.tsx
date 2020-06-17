@@ -29,10 +29,18 @@ const HomeRoute: React.FC = () => {
 }
 
 export default createPage(HomeRoute, {
-  model: postsPageAtom,getInitialData: (dispatch:any) => dispatch(loadPostsActions()),
+  model: postsPageAtom,
+  getInitialData: (dispatch: any) => dispatch(loadPostsActions()),
   // eslint-disable-next-line react/display-name
   renderMetaTags: async (url: string, getStore: () => Promise<Store>) => {
-    const data = getState((await getStore()).getState(),postsPageAtom)
-    return <Helmet>{SEOTextContainer({title:'home page',description:`get new info from localhost! there is ${data?.postsList.length} new posts`})}</Helmet>
-  }
+    const data = getState((await getStore()).getState(), postsPageAtom)
+    return (
+      <Helmet>
+        {SEOTextContainer({
+          title: 'home page',
+          description: `get new info from localhost! there is ${data?.postsList.length} new posts`,
+        })}
+      </Helmet>
+    )
+  },
 })

@@ -1,6 +1,10 @@
 import React from 'react'
 
-export type RouteComponent<T> = React.FC<T> & {getInitialData?: any; model?: any; renderMetaTags?: any}
+export type RouteComponent<T> = React.FC<T> & {
+  getInitialData?: any
+  model?: any
+  renderMetaTags?: any
+}
 
 // TODO дописать интерфейсы
 export function createPage<T>(component: React.FC<T>, config = {} as any) {

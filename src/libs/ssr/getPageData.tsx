@@ -1,15 +1,15 @@
-import { ChunkExtractor, ChunkExtractorManager } from "@loadable/server"
-import { matchRoutes, RouteConfig } from "react-router-config"
-import { routes } from "../../routes"
-import { createStore } from "@reatom/core"
-import { preloadData } from "./preloadData"
-import { renderToString } from "react-dom/server"
-import { StaticRouter } from "react-router-dom"
-import React from "react"
-import App from "../../App"
-import { getPages } from "./getPages"
-import { renderMetaTags } from "./renderMetaTags"
-import {context as Context} from '@reatom/react'
+import { ChunkExtractor, ChunkExtractorManager } from '@loadable/server'
+import { matchRoutes, RouteConfig } from 'react-router-config'
+import { routes } from '../../routes'
+import { createStore } from '@reatom/core'
+import { preloadData } from './preloadData'
+import { renderToString } from 'react-dom/server'
+import { StaticRouter } from 'react-router-dom'
+import React from 'react'
+import App from '../../App'
+import { getPages } from './getPages'
+import { renderMetaTags } from './renderMetaTags'
+import { context as Context } from '@reatom/react'
 import path from 'path'
 
 export async function getPageData({ url, context }: any) {
@@ -36,18 +36,14 @@ export async function getPageData({ url, context }: any) {
           <App />
         </Context.Provider>
       </StaticRouter>
-    </ChunkExtractorManager>,
+    </ChunkExtractorManager>
   )
 
   const initialState = JSON.stringify(store.getState())
 
   const scriptTags = extractor.getScriptTags()
   const stylesTags = extractor.getStyleTags()
-  console.log({content,
-    initialState,
-    metaTags,
-    stylesTags,
-    scriptTags,})
+  console.log({ content, initialState, metaTags, stylesTags, scriptTags })
   return {
     content,
     initialState,

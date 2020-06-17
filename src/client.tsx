@@ -21,7 +21,7 @@ hydrate(
       </context.Provider>
     </BrowserRouter>
   </HelmetProvider>,
-  document.getElementById('root'),
+  document.getElementById('root')
 )
 
 if (module.hot) {

@@ -1,4 +1,4 @@
-import { Store, Action } from "@reatom/core"
+import { Store, Action } from '@reatom/core'
 
 // return a promise from store.dispatch
 export function call(store: Store, action: Action<any>) {

@@ -1,4 +1,3 @@
-
 import express from 'express'
 import compression from 'compression'
 
@@ -23,9 +22,8 @@ server
       scriptTags,
     } = await getPageData({
       url: req.url,
-      context
+      context,
     })
-    
 
     res.send(
       `<!doctype html>

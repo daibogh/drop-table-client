@@ -10,6 +10,6 @@ export async function preloadData(pages: any[], store: Store) {
       if (component.getInitialData) {
         await component.getInitialData(call.bind(null, store), match)
       }
-    }),
+    })
   )
 }

@@ -1,7 +1,7 @@
 import { declareAction } from '@reatom/core'
 
 export function declareAsyncAction(name: string, fetcher: any) {
-  const done = declareAction<any>(() =>[`${name} fetch done`])
+  const done = declareAction<any>(() => [`${name} fetch done`])
   const fail = declareAction<any>(() => [`${name} fetch fail`])
 
   const fetchAction = declareAction(
@@ -15,7 +15,7 @@ export function declareAsyncAction(name: string, fetcher: any) {
         console.error('error', error)
         store.dispatch(fail(error))
       }
-    },
+    }
   ) as any
 
   fetchAction.done = done

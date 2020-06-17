@@ -8,7 +8,7 @@ import { rootAtom } from './RootRoute.model'
 // const Header = loadable(() => import('../../components/Header'))
 // const Footer = loadable(() => import('../../components/Footer'))
 
-const RootRoute:React.FC<RouteConfigComponentProps<any>> = ({ route }) => (
+const RootRoute: React.FC<RouteConfigComponentProps<any>> = ({ route }) => (
   <div>
     <h1>Root</h1>
     {/* child routes won't render without this */}
