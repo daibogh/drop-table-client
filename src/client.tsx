@@ -7,17 +7,20 @@ import App from './App'
 import { createStore } from '@reatom/core'
 import { connectReduxDevtools } from '@reatom/debug'
 import { context } from '@reatom/react'
+import { HelmetProvider } from 'react-helmet-async'
 
 export const store = createStore((window as any).__INITIAL_STATE__)
 
 // connectReduxDevtools(store)
 
 hydrate(
-  <BrowserRouter>
-    <context.Provider value={store}>
-      <App />
-    </context.Provider>
-  </BrowserRouter>,
+  <HelmetProvider context={{}}>
+    <BrowserRouter>
+      <context.Provider value={store}>
+        <App />
+      </context.Provider>
+    </BrowserRouter>
+  </HelmetProvider>,
   document.getElementById('root'),
 )
 

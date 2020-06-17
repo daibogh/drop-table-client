@@ -1,14 +1,20 @@
 import { HomeRoute } from "./routes/HomeRoute"
 import { AnotherRoute } from "./routes/AnotherRoute"
+import RootRoute from "./routes/RootRoute/RootRoute"
 
 export const routes = [
   {
-    path: "/child/:id?",
-    exact: true,
-    component: AnotherRoute,
-  },
-  {
-    path: "/",
-    component: HomeRoute
-  }
+    component: RootRoute,
+    routes: [
+      {
+        path: "/",
+        exact: true,
+        component: HomeRoute
+      },
+      {
+        path: "/child/:id?",
+        exact: true,
+        component: AnotherRoute,
+      },
+    ]}
 ]
