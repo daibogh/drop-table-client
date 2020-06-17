@@ -6,6 +6,7 @@ const postcssNormalize = require('postcss-normalize');
 const ForkTSCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 const {addSassPlugin} = require('./config/sass-plugin')
 const {addLoadablePlugin} = require('./config/loadable-plugin')
+const addHerokuConf = require("razzle-heroku")
 
 module.exports = {
   plugins: [
@@ -18,7 +19,7 @@ module.exports = {
     let config = defaultConfig;
     config = addLoadablePlugin(config,{ target, dev }, webpack)
     config = addSassPlugin(config)
-    
+    config = addHerokuConf(config, { target, dev }, webpack)
     return config;
   },
 };
