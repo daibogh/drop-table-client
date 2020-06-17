@@ -13,6 +13,7 @@ server
   .use(createLocaleMiddleware())
   .use(express.static(process.env.RAZZLE_PUBLIC_DIR!))
   .get('/*', async (req, res) => {
+    res.set('Cache-Control', 'public, max-age=31557600')
     const context = {} as any
     const {
       content,
@@ -32,6 +33,7 @@ server
         <head>
           <meta http-equiv="X-UA-Compatible" content="IE=edge" />
           <meta charset="utf-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1">
           ${metaTags}
           ${stylesTags}
         </head>
