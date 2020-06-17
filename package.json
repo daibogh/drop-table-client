@@ -12,8 +12,7 @@
     "check-typescript": "tsc --project .tsconfig --noEmit",
     "prettier": "prettier --write ./src",
     "cc": "create-component",
-    "codegen": "npx @manifoldco/swagger-to-ts https://petstore.swagger.io/v2/swagger.json --output ./src/api/types.ts",
-    "heroku-postbuild": "yarn run build"
+    "codegen": "npx @manifoldco/swagger-to-ts https://petstore.swagger.io/v2/swagger.json --output ./src/api/types.ts"
   },
   "pre-commit": [
     "check-typescript",
