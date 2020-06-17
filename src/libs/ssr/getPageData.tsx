@@ -43,7 +43,7 @@ export async function getPageData({ url, context }: any) {
 
   const scriptTags = extractor.getScriptTags()
   const stylesTags = extractor.getStyleTags()
-  console.log({ content, initialState, metaTags, stylesTags, scriptTags })
+  // console.log({ content, initialState, metaTags, stylesTags, scriptTags })
   return {
     content,
     initialState,
