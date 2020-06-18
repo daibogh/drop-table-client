@@ -1,6 +1,6 @@
 import { HomeRoute } from './routes/HomeRoute'
 import { AnotherRoute } from './routes/AnotherRoute'
-import RootRoute from './routes/RootRoute/RootRoute'
+import {RootRoute} from './routes/RootRoute'
 
 export const routes = [
   {
