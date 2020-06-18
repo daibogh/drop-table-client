@@ -1,8 +1,7 @@
 import React from 'react'
 import { hydrate } from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
-import * as OfflinePluginRuntime from 'offline-plugin/runtime'
-OfflinePluginRuntime.install()
+import { register } from 'razzle-plugin-workbox/service-worker'
 import App from './App'
 import { createStore } from '@reatom/core'
 import { connectReduxDevtools } from '@reatom/debug'
@@ -27,3 +26,4 @@ hydrate(
 if (module.hot) {
   module.hot.accept()
 }
+register({swDest:'static/service-worker.js'})

@@ -23,7 +23,11 @@ server
       url: req.url,
       context,
     })
-
+    // console.log({content,
+    //   initialState,
+    //   metaTags,
+    //   stylesTags,
+    //   scriptTags,})
     res.send(
       `<!doctype html>
       <html lang="en">
@@ -32,6 +36,7 @@ server
           <meta charset="utf-8" />
           <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
           <meta name="viewport" content="width=device-width, initial-scale=1">
+          <link rel="manifest" href="static/manifest">
           ${metaTags}
           ${stylesTags}
         </head>

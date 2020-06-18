@@ -23,7 +23,7 @@ const HomeRoute: React.FC = () => {
   }
   return (
     <>
-      <code>{JSON.stringify(postsList)}</code>
+      {/* <code>{JSON.stringify(postsList)}</code> */}
       <Button color="primary" onClick={inc}>
         click to increment
       </Button>

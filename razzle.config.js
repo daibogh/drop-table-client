@@ -12,7 +12,24 @@ module.exports = {
   plugins: [
     'babel-ts',
     'bundle-analyzer',
-    // 'serviceworker'
+    {
+      name:'workbox',
+      options: {
+        swDest: 'static/service-worker.js',
+        runtimeCaching: [
+          {
+            // urlPattern: /^https?\:\/\/.*static.*(chunk\.js|bundle.*\.css)$/,
+            urlPattern: /^https?\:\/\/.*$/,
+            handler: 'StaleWhileRevalidate',
+          }]
+      }
+  },
+  // {
+  //   name: "manifest",
+  //   options: {
+  //     filePath: "static/manifest.json"
+  //   }
+  // }
   ],
   modify: (defaultConfig, { target, dev }, webpack) => {
 
