@@ -1,6 +1,5 @@
 import express from 'express'
 import compression from 'compression'
-
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import createLocaleMiddleware from 'express-locale'
@@ -31,6 +30,7 @@ server
         <head>
           <meta http-equiv="X-UA-Compatible" content="IE=edge" />
           <meta charset="utf-8" />
+          <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
           <meta name="viewport" content="width=device-width, initial-scale=1">
           ${metaTags}
           ${stylesTags}

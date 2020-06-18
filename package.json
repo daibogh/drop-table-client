@@ -15,8 +15,7 @@
     "codegen": "npx @manifoldco/swagger-to-ts https://petstore.swagger.io/v2/swagger.json --output ./src/api/types.ts"
   },
   "pre-commit": [
-    "check-typescript",
-    "prettier"
+    "check-typescript"
   ],
   "dependencies": {
     "@loadable/component": "^5.12.0",
@@ -68,6 +67,7 @@
     "@typescript-eslint/parser": "^3.3.0",
     "babel-plugin-module-resolver": "^4.0.0",
     "blueprint-templates-cli": "^0.1.13",
+    "copy-webpack-plugin": "^6.0.2",
     "eslint": "^7.2.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-import": "^2.21.2",
