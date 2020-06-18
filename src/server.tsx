@@ -10,7 +10,7 @@ server
   .disable('x-powered-by')
   .use(compression())
   .use(createLocaleMiddleware())
-  .use(express.static(process.env.RAZZLE_PUBLIC_DIR!))
+  .use('/static', express.static(process.env.RAZZLE_PUBLIC_DIR!))
   .get('/*', async (req, res) => {
     res.set('Cache-Control', 'public, max-age=31557600')
     const context = {} as any
@@ -29,6 +29,7 @@ server
       `<!doctype html>
       <html lang="en">
         <head>
+          <link rel="icon" href="/static/favicon.png" type="image/x-icon"> 
           <meta http-equiv="X-UA-Compatible" content="IE=edge" />
           <meta charset="utf-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1">
