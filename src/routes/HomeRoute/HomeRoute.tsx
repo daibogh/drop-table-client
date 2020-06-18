@@ -10,12 +10,12 @@ import { Store, getState } from '@reatom/core'
 import { rootAtom } from '../RootRoute/RootRoute.model'
 
 const HomeRoute: React.FC = () => {
-  const { isLoading, postsList } = usePosts()
+  const {isLoading, postsList} = usePosts()
   const value = useAtom(rootAtom).testAtom
   const atomValue = useAtom(counterAtom)
   const inc = useAction(() => increment())
   const dec = useAction(() => decrement())
-  if (isLoading) {
+  if (isLoading){
     return <>...</>
   }
   if (!postsList) {
