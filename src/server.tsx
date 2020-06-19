@@ -34,9 +34,9 @@ server
         <head>
           <meta http-equiv="X-UA-Compatible" content="IE=edge" />
           <meta charset="utf-8" />
-          <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
+          <link rel="icon" href="img/favicon64.png" type="image/x-icon">
           <meta name="viewport" content="width=device-width, initial-scale=1">
-          <link rel="manifest" href="static/manifest">
+          <link rel="manifest" href="manifest.json">
           ${metaTags}
           ${stylesTags}
         </head>

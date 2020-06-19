@@ -32,13 +32,16 @@ module.exports = {
   // }
   ],
   modify: (defaultConfig, { target, dev }, webpack) => {
-
     let config = defaultConfig;
-    config.plugins.push(new CopyPlugin({
-      patterns: [
-        { from: 'public', to: 'static' }
-      ],
-    }))
+    if (!target === 'web') {
+      config.plugins.push(new CopyPlugin({
+        patterns: [
+          { from: 'public', to: 'static' }
+        ],
+      }))
+    }
+    
+    
     config = addLoadablePlugin(config,{ target, dev }, webpack)
     
     config = addSassPlugin(config)
