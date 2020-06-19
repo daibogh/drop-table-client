@@ -1,0 +1,137 @@
+.multiselect {
+  cursor: pointer;
+  &.inline {
+    display: flex;
+    align-items: center;
+    .label {
+      width: 50%;
+      margin-right: 0.5em;
+    }
+  }
+  .label {
+    font-weight: 400;
+  }
+  .container {
+    position: relative;
+    height: auto;
+    &.cell {
+      padding: 0.19em 0.19em;
+      height: 2.2em !important;
+      border-radius: 0 !important;
+    }
+    .selected {
+      background-color: grey;
+    }
+    .box {
+      display: flex;
+      margin: 0.1em;
+      padding-left: 0.4em;
+      border-radius: 0.2em;
+      font-size: 1em;
+      .box-label {
+        overflow: hidden;
+        white-space: nowrap;
+      }
+      .icon {
+        margin-left: 0.5em;
+        cursor: pointer;
+        font-size: 1em;
+        padding: 0;
+      }
+      .icon-display {
+        display: flex;
+        align-items: center;
+        padding-right: 0.4em;
+        margin-left: 0.4em;
+        border-top-right-radius: 0.2em;
+        border-bottom-right-radius: 0.2em;
+      }
+      .icon-hover:hover {
+        background-color: #ff9130;
+      }
+    }
+    .box-drag-over {
+      background-color: #b3b3b3;
+      color: black;
+    }
+    .box-regular {
+      background-color: grey;
+      color: black;
+    }
+    .content {
+      &.cell {
+        padding: 0;
+      }
+
+      min-height: 1.6em;
+      .word-hidden {
+        overflow: hidden;
+        white-space: nowrap;
+      }
+    }
+    .icons {
+      margin-left: 1em;
+      display: flex;
+      align-items: center;
+    }
+    .cross {
+      color: #c0c0c0;
+      padding-right: 0.6em;
+      margin-right: 0.6em;
+      border-right: solid grey 2px;
+      &.cell {
+        padding-right: 0.5em;
+        margin-right: 0;
+        border-right: none;
+      }
+    }
+
+    .cross-enabled:hover {
+      color: orange;
+    }
+    .cross-enabled:active {
+      color: orange;
+    }
+    .dropdown-container {
+      position: absolute;
+      left: 0;
+      .dropdown {
+        border-radius: 0.2em;
+        margin: 0.3rem 0;
+        padding: 0.1em;
+        z-index: 1031;
+        background-color: white;
+        border: solid grey 1px;
+        .items {
+          overflow-y: auto;
+          max-height: 16em;
+          .item {
+            min-height: 1.6em;
+          }
+        }
+        .input-container {
+          margin: 0.5em;
+          border: solid #c0c0c0 1px;
+          border-radius: 0.2em;
+          padding: 0.15em 0.5em;
+          .input {
+            border: none;
+            outline: none;
+          }
+          .icon {
+            color: #c0c0c0;
+          }
+        }
+      }
+    }
+  }
+  .container.active {
+    border-color: grey !important;
+    border-radius: 0.2em;
+  }
+
+  .container.disable {
+    opacity: 0.75;
+    border: solid #c0c0c0 1px;
+  }
+}

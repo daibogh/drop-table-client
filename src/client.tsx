@@ -26,4 +26,4 @@ hydrate(
 if (module.hot) {
   module.hot.accept()
 }
-register({swDest:'static/service-worker.js'})
+register({ swDest: 'static/service-worker.js' })

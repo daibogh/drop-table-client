@@ -1,0 +1,26 @@
+.app-modal {
+  &.modal {
+    display: block;
+    z-index: 1040;
+    &:not(.noHeight) {
+      .modal-body {
+        min-height: 10rem;
+      }
+    }
+    .modal-header {
+      font-family: Sarabun, sans-serif;
+      color: #ffffff;
+      background: #626ed4;
+      border: none;
+      .modal-title {
+        font-weight: 600;
+      }
+    }
+    .close {
+      color: #ffffff;
+    }
+    .modal-content {
+      border: none;
+    }
+  }
+}
