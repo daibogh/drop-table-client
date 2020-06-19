@@ -1,6 +1,8 @@
 import { HomeRoute } from './routes/HomeRoute'
-import { AnotherRoute } from './routes/AnotherRoute'
-import { RootRoute } from './routes/RootRoute'
+import {RootRoute} from './routes/RootRoute'
+import {DepartmentsRoute} from './routes/DepartmentsRoute'
+import {AddDepartmentRoute} from './routes/AddDepartmentRoute'
+import {ResultsRoute} from './routes/ResultsRoute'
 
 export const routes = [
   {
@@ -12,10 +14,21 @@ export const routes = [
         component: HomeRoute,
       },
       {
-        path: '/child/:id?',
+        path: '/departemnts',
         exact: true,
-        component: AnotherRoute,
+        component: DepartmentsRoute,
       },
+      {
+        path: '/add-department',
+        exact: true,
+        component: AddDepartmentRoute,
+      },
+      {
+        path: '/results',
+        exact: true,
+        component: ResultsRoute,
+      },
+      
     ],
   },
 ]

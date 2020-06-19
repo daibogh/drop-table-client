@@ -8,6 +8,7 @@ import { Helmet } from 'react-helmet-async'
 import SEOTextContainer from '../../containers/SEOTextContainer'
 import { Store, getState } from '@reatom/core'
 import { rootAtom } from '../RootRoute/RootRoute.model'
+import { Link } from 'react-router-dom'
 
 const HomeRoute: React.FC = () => {
   const { isLoading, postsList } = usePosts()
@@ -24,14 +25,9 @@ const HomeRoute: React.FC = () => {
   return (
     <>
       {/* <code>{JSON.stringify(postsList)}</code> */}
-      <Button color="primary" onClick={inc}>
-        click to increment
-      </Button>
-      <Button color="danger" onClick={dec}>
-        click to decrement
-      </Button>
-      <div>the value is {atomValue}</div>
-      <Button>{value}</Button>
+      <Link to='/'>дисциплины</Link>
+      <Link to='/add-department'>добавить программу</Link>
+      <Link to='/results'>общая статистика</Link>
     </>
   )
 }
