@@ -1,5 +1,5 @@
 import React, { ReactChild } from 'react'
-import { SelectBaseField } from './SelectBaseField'
+import { SelectBaseField } from './selectBaseField'
 
 interface Props<TOption extends object | string | number> {
   getContent?: (option: TOption) => ReactChild
