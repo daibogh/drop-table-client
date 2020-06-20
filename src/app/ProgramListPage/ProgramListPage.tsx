@@ -1,47 +1,70 @@
-import React, { useMemo, useState } from "react";
-import { SelectField } from "shared/fields/selectField";
-import { Line } from "shared/base/line";
-import { Toggle } from "app/Toggle/Toggle";
-import { useToggle } from "react-use";
+import useSWR from "swr";
+import { baseUrl } from "app/constants";
+import { Program } from "data/programs/model";
+import React from "react";
+import { Line } from "shared/base";
 import { Card } from "app/Card/Card";
 import { Paginator } from "app/Paginator/Paginator";
-import { Page } from "app/page/Page/Page";
-import { ProgrammsList } from "app/ProgrammsList/ProgrammsList";
-import { ProgramsGraph } from "app/ProgramsGraph/ProgramsGraph";
-import { StoreType } from "core/store";
-import { useSelector } from "react-redux";
+import { chunk } from "lodash";
 
-interface ProgramListPageProps {
-  className?: string;
+interface ProgrammsListProps {
+  category?: string | null;
 }
 
-export const ProgramListPage: React.FC<ProgramListPageProps> = ({
-  className,
-}) => {
-  const programs = useSelector((state: StoreType) => state.programs.programs);
-  const [isList, toggle] = useToggle(true);
-  const [category, setCategory] = useState<string>('');
+export const ProgrammsList = (props: ProgrammsListProps) => {
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   dispatch(getProgramsAsync({}));
+  // }, []);
+  // const programs = useSelector((state: StoreType) => state.programs.programs)
+  const esc = encodeURIComponent;
+  const params = Object.keys(props)
+    .map((k) => {
+      return params && params[k] ? esc(k) + "=" + esc(props[k]) : "";
+    })
+    .join("&");
+  const { data: programs, error } = useSWR<any, Program[]>(
+    `${baseUrl}/program`,
+    async (url: string) => (await fetch(`${url}?${params}`)).json()
+  );
+  // const d = useMemo(() => calculateGraphData(data || []), [data]);
+  console.log(error);
 
-  const options = useMemo(() => {
-    const map = new Map<string, string>();
-    programs.forEach((x) => map.set(x.category, x.category));
-    return map;
-  }, [programs]);
+  if (!programs) {
+    return <>данные обрабатываются... </>;
+  }
 
+  const chunkedPrograms = chunk(programs, 4);
+  
   return (
-    <Page title="Список образовательных программ">
-      <Line h="100" vertical className={`ProgramListPage ${className}`}>
-        <Line justifyContent="between">
-          <SelectField
-            value={category}
-            options={options}
-            getLabel={(x) => x}
-            onChange={(v) => setCategory(v)}
-          ></SelectField>{" "}
-          <Toggle on={isList} toggle={toggle}></Toggle>
+    <Line vertical>
+      {chunkedPrograms.map((chunk, idx) => (
+        <Line key={idx}>
+          {chunk.map((program, pidx) => (
+            <Line pb="1" w="25" key={`program-${idx}-${pidx}`}>
+              <Card
+                title={program['name']}
+                description={`${program['disciplines']} дисциплин`}
+              ></Card>
+            </Line>
+          ))}
         </Line>
-        <>{isList ? <ProgrammsList category={category} /> : <ProgramsGraph />}</>
+      ))}
+
+      <Line mt="2" mb="2" justifyContent="end">
+        <Paginator
+          page={{
+            items: [],
+            totalItems: programs?.length,
+            totalPages: programs.length / 8,
+            currentPage: 1,
+            pageSize: 8,
+          }}
+          setPage={() => {
+            console.log();
+          }}
+        ></Paginator>
       </Line>
-    </Page>
+    </Line>
   );
 };

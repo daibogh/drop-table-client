@@ -1,67 +1,67 @@
-import React, { useCallback, useEffect, useMemo } from "react";
+import React, { useState } from "react";
+import { Page } from "app/page/Page/Page";
 import { Line } from "shared/base";
-import { Card } from "app/Card/Card";
-import { Paginator } from "app/Paginator/Paginator";
-import { useDispatch, useStore, useSelector } from "react-redux";
-import { getProgramsAsync } from "data/programs/actions";
+import { useToggle } from "react-use";
+import { useSelector } from "react-redux";
+import { SelectField } from "shared/fields";
+import { Toggle } from "app/Toggle/Toggle";
+import { ProgrammsList } from "app/ProgrammsList/ProgrammsList";
+import { ProgramsGraph } from "app/ProgramsGraph/ProgramsGraph";
 import { StoreType } from "core/store";
-import chunk from "lodash/fp/chunk";
 
-interface ProgramListProps {
+interface ProgramListPageProps {
   className?: string;
-  category?: string;
 }
 
-export const ProgrammsList: React.FC<ProgramListProps> = ({
+export const categoriesMap = new Map([
+  ["все", "все"],
+  ["Физика", "Физика"],
+  ["Математика", "Математика"],
+  ["Биология", "Биология"],
+  ["Медицина", "Медицина"],
+  ["Информатика", "Информатика"],
+  ["Экология", "Экология"],
+  ["Экономика", "Экономика"],
+  ["Химия", "Химия"],
+  ["Социология", "Социология"],
+  ["Лингвистика", "Лингвистика"],
+  ["Филология", "Филология"],
+  ["Философия", "Философия"],
+  ["Риторика", "Риторика"],
+  ["Программирование", "Программирование"],
+  ["Политология", "Политология"],
+  ["Правоведение", "Правоведение"],
+  ["Культурология", "Культурология"],
+  ["Геополитика", "Геополитика"],
+  ["Алгебра", "Алгебра"],
+]);
+
+export const ProgramListPage: React.FC<ProgramListPageProps> = ({
   className,
-  category,
 }) => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getProgramsAsync({ category }));
-  }, [dispatch, category]);
-
   const programs = useSelector((state: StoreType) => state.programs.programs);
-
-  console.log({ programs });
-
-  // const list = useMemo(() => {
-  //   return category == "all"
-  //     ? programs
-  //     : programs.flatMap((x) => (x.category == category ? [x] : []));
-  // }, [programs, category]);
-
-  const chunkedPrograms = chunk(4, programs);
+  const [isList, toggle] = useToggle(true);
+  const [category, setCategory] = useState<string | undefined>("все");
   return (
-    <Line h="100" vertical>
-      {chunkedPrograms.map((chunk, idx) => (
-        <Line h='50' key={idx}>
-          {chunk.map((program, pidx) => (
-            <Card
-              id={program.id}
-              key={`program-${idx}-${pidx}`}
-              title={program.name}
-              description={`${program.disciplines} дисциплин`}
-            />
-          ))}
+    <Page title="Список образовательных программ">
+      <Line h="100" vertical className={`ProgramListPage ${className}`}>
+        <Line justifyContent="between">
+          <SelectField
+            value={category}
+            options={categoriesMap}
+            getLabel={(x) => x}
+            onChange={setCategory}
+          ></SelectField>
+          <Toggle on={isList} toggle={toggle}></Toggle>
         </Line>
-      ))}
-
-      <Line mt="2" mb="2" justifyContent="end">
-        <Paginator
-          page={{
-            items: [],
-            totalItems: programs?.length,
-            totalPages: programs.length / 8,
-            currentPage: 1,
-            pageSize: 8,
-          }}
-          setPage={() => {
-            console.log();
-          }}
-        ></Paginator>
+        <div style={{ height: "100vh" }}>
+          {isList ? (
+            <ProgrammsList category={category === "все" ? null : category} />
+          ) : (
+            <ProgramsGraph />
+          )}
+        </div>
       </Line>
-    </Line>
+    </Page>
   );
 };
