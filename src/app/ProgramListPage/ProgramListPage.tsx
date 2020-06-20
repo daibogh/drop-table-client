@@ -12,7 +12,7 @@ interface ProgramListPageProps {
 
 export const callInOptions = new Map([
   ['0', 'Select'],
-  ['name', 'Name'],
+  ['name', 'Медицина'],
   ['number', 'Number'],
   ['seniority', 'SeniorityHelper'],
   ['telephone', 'Phone'],
@@ -27,7 +27,7 @@ export const callInOptions = new Map([
 export const ProgramListPage: React.FC<ProgramListPageProps> = ({ className }) => {
   return (
     <Page title="Список образовательных программ">
-    <Line vertical className={`ProgramListPage ${className}`}>
+    <Line h='100' vertical className={`ProgramListPage ${className}`}>
       <Line justifyContent="between">
         <SelectField
           value={'name'}
@@ -50,7 +50,7 @@ export const ProgramListPage: React.FC<ProgramListPageProps> = ({ className }) =
         <Card title={'03.05.05 Педиатр'} description={'20 дисциплин'}></Card>
         <Card title={'03.05.05 Педиатр'} description={'20 дисциплин'}></Card>
       </Line>
-      <Line justifyContent="end">
+      <Line mt='2' mb='2' justifyContent="end">
         <Paginator
           page={{
             items: [],

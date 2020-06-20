@@ -1,7 +1,9 @@
-import React from 'react';
-import { Line } from 'shared/base/line';
+import React from "react";
+import { Line } from "shared/base/line";
 
-import './Card.scss';
+import { images } from "./images";
+
+import "./Card.scss";
 
 interface CardProps {
   className?: string;
@@ -9,12 +11,20 @@ interface CardProps {
   description: string;
 }
 
-export const Card: React.FC<CardProps> = ({ className, description, title }) => {
+export const Card: React.FC<CardProps> = ({
+  className,
+  description,
+  title,
+}) => {
   return (
     <div className={`Card ${className}`}>
       <Line w="100" h="100" vertical>
         <Line h="75" justifyContent="center">
-          {/* <img className="img" alt="" src={doctor}></img> */}
+          <img
+            className="img"
+            alt=""
+            src={images[Math.floor(Math.random() * Math.floor(7))]}
+          ></img>
         </Line>
         <div>{title}</div>
         <div className="Description">{description}</div>

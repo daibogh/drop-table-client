@@ -16,6 +16,7 @@
   .container {
     position: relative;
     height: auto;
+    line-height: 1em;
     &.cell {
       padding: 0.19em 0.19em;
       height: 2.2em !important;
@@ -61,7 +62,7 @@
       &.cell {
         padding: 0;
       }
-      min-height: 1.6em;
+      min-height: 1em;
       .word-hidden {
         overflow: hidden;
         white-space: nowrap;
