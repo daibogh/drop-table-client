@@ -2,6 +2,7 @@
 
 .ResultPage {
   .Title {
+    color: $purple;
     font-size: 1.4em;
     font-weight: 500;
   }
@@ -13,5 +14,12 @@
     border: solid 1px #b7b6bb;
     border-radius: 0.5em;
     margin-right: 1em;
+    .field {
+      font-weight: lighter;
+    }
+  }
+  .sector-title {
+    color: $grey;
+    font-weight: 500;
   }
 }

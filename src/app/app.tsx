@@ -9,8 +9,6 @@ import { ProgramListPage } from './ProgramListPage/ProgramListPage';
 
 import './app.scss';
 
-
-
 export const App: React.FC = () => {
   const location = useLocation();//hello
   return (
@@ -21,6 +19,7 @@ export const App: React.FC = () => {
       <div className="main-container">
       <Switch location={location}>
         <Route path="/create" component={ProgramPage} />
+        <Route path="/statistics/:id" component={ResultPage} />
         <Route path="/statistics" component={ResultPage} />
         <Route path="/" component={ProgramListPage} />
         </Switch>

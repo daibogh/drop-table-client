@@ -1,16 +1,16 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Line } from 'shared/base/line';
 import { TextBoxField } from 'shared/fields/textBoxField';
 import { Page } from 'app/page/Page/Page';
 import { TextareaField } from 'shared/fields/textareaField';
 import { Button } from 'shared/base/button';
 import { Icon } from 'shared/base';
+import { useMatchParams } from 'core/router';
+import { Program } from 'data/programs/model';
+import { StoreType } from 'core/store';
+import { useSelector, useDispatch } from 'react-redux';
 
 import './ProgramPage.scss';
-
-interface ProgramPageProps {
-  className?: string;
-}
 
 const criteria = [
   { id: 1, name: 'Востребованность на рынке труда', weight: 0.1 },
@@ -34,7 +34,7 @@ const disciplines = [
   { id: 6, name: 'Социология' }
 ];
 
-export const ProgramPage: React.FC<ProgramPageProps> = ({ className }) => {
+export const ProgramPage: React.FC = () => {
   const getCriteriaCard = useCallback((criteria) => {
     return (
       <Line key={criteria.id} className="criteria-card" alignItems="center" justifyContent="between">
@@ -62,7 +62,7 @@ export const ProgramPage: React.FC<ProgramPageProps> = ({ className }) => {
         <TextBoxField name="title" value="Программная инженерия" onChange={() => {}} mb="2">
           Название
         </TextBoxField>
-        <TextareaField name="description" value="Очень хорошая программа всем советую" onChange={() => {}}>
+        <TextareaField name="description" value="Описание" onChange={() => {}}>
           Описание
         </TextareaField>
         <TextBoxField name="hours" value="1000" onChange={() => {}} type="number" mt="2">
