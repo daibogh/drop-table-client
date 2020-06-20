@@ -1,0 +1,10 @@
+.textBoxField {
+  &.inline {
+    display: flex;
+    align-items: center;
+    .label {
+      width: 50%;
+      margin-right: 0.5em;
+    }
+  }
+}

@@ -1,0 +1,18 @@
+@import '../../constants.scss';
+
+.ResultPage {
+  .Title {
+    font-size: 1.4em;
+    color: $purple;
+    font-weight: 500;
+  }
+  .Cod {
+    font-size: 0.8em;
+    opacity: 0.4;
+  }
+  .Block {
+    border: solid 1px #b7b6bb;
+    border-radius: 0.5em;
+    margin-right: 1em;
+  }
+}

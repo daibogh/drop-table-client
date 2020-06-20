@@ -1,6 +1,8 @@
 import React from 'react'
 
 import { Line } from '../shared/base/Line'
+import doctor from './doctor.jpg'
+
 import './Card.scss'
 interface CardProps {
   className?: string
@@ -17,8 +19,7 @@ const Card: React.FunctionComponent<CardProps> = ({
     <div className={`Card ${className}`}>
       <Line w="100" h="100" vertical>
         <Line h="75" justifyContent="center">
-          <div className="img"></div>
-          {/* <img alt='' src={doctor}></img> */}
+          <img className='img' alt='' src={doctor}></img>
         </Line>
         <div>{title}</div>
         <div className="Description">{description}</div>

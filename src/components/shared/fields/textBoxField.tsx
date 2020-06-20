@@ -60,7 +60,7 @@ export const TextBoxField: React.FC<Props> = ({
         className,
         {
           [`col-md-${size}`]: size != null,
-          ' inline': inline,
+          ' inline': inline
         },
         propsToSize(other)
       )}

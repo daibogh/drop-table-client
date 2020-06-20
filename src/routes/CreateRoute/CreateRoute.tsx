@@ -9,10 +9,15 @@ import { Helmet } from 'react-helmet-async'
 import SEOTextContainer from '../../containers/SEOTextContainer'
 import { Store, getState } from '@reatom/core'
 import { Page } from '~/components/shared/page/Page'
+import { ProgramPage } from '~/components/ProgramPage'
 export interface CreateRouteProps {}
 const CreateRoute: React.FC<CreateRouteProps> = () => {
   const posts = useCreateRoute()
-  return <Page title="Добавление образовательной программы"></Page>
+  return (
+    <Page title="Добавление образовательной программы">
+      <ProgramPage />
+    </Page>
+  )
 }
 
 export default createPage(CreateRoute, {
