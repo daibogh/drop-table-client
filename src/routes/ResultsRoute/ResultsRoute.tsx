@@ -1,17 +1,17 @@
 import React from 'react'
 import { createPage } from '../../libs/ssr/createPage'
-import { pageAtomResultsRoute, loadResultsRouteActions, useResultsRoute } from './ResultsRoute.model'
+import {
+  pageAtomResultsRoute,
+  loadResultsRouteActions,
+  useResultsRoute,
+} from './ResultsRoute.model'
 import { Helmet } from 'react-helmet-async'
 import SEOTextContainer from '../../containers/SEOTextContainer'
 import { Store, getState } from '@reatom/core'
 export interface ResultsRouteProps {}
 const ResultsRoute: React.FC<ResultsRouteProps> = () => {
   const posts = useResultsRoute()
-  return (
-    <div className="ResultsRoute">
-      ResultsRoute
-    </div>
-  )
+  return <div className="ResultsRoute">ResultsRoute</div>
 }
 
 export default createPage(ResultsRoute, {

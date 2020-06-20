@@ -1,2 +1,11 @@
 // @import "~bootstrap/scss/bootstrap.scss";
 @import '~bootstrap/dist/css/bootstrap.min.css';
+
+.App {
+  height: 100vh;
+  position: fixed;
+  a {
+    text-decoration: none;
+    color: #d3d3d3;
+  }
+}

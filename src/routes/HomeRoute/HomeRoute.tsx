@@ -9,6 +9,7 @@ import SEOTextContainer from '../../containers/SEOTextContainer'
 import { Store, getState } from '@reatom/core'
 import { rootAtom } from '../RootRoute/RootRoute.model'
 import { Link } from 'react-router-dom'
+import { Page } from '~/components/shared/page/Page'
 
 const HomeRoute: React.FC = () => {
   const { isLoading, postsList } = usePosts()
@@ -24,10 +25,7 @@ const HomeRoute: React.FC = () => {
   }
   return (
     <>
-      {/* <code>{JSON.stringify(postsList)}</code> */}
-      <Link to='/'>дисциплины</Link>
-      <Link to='/add-department'>добавить программу</Link>
-      <Link to='/results'>общая статистика</Link>
+      <Page title="Список образовательных программ"></Page>
     </>
   )
 }

@@ -6,16 +6,16 @@ import { context } from '@reatom/react'
 import { connectReduxDevtools } from '@reatom/debug'
 import { renderRoutes } from 'react-router-config'
 import { routes } from './routes'
-import Header from './components/Header'
 import Footer from './components/Footer'
+import { Sidebar } from './components/sidebar/Sidebar'
+import { Line } from './components/shared/base/Line'
 
 const App: React.FC = () => {
   return (
-    <>
-      <Header />
+    <Line className="App">
+      <Sidebar />
       {renderRoutes(routes as any[])}
-      <Footer />
-    </>
+    </Line>
   )
 }
 

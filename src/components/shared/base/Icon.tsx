@@ -4,8 +4,10 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes'
 import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck'
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons/faAngleDown'
 import { faSearch } from '@fortawesome/free-solid-svg-icons/faSearch'
+import { faList } from '@fortawesome/free-solid-svg-icons/faList'
+import { faChartBar } from '@fortawesome/free-solid-svg-icons/faChartBar'
 //regular
-import { faFolderPlus } from '@fortawesome/free-solid-svg-icons/faFolderPlus'
+import { faPlusSquare } from '@fortawesome/free-regular-svg-icons/faPlusSquare'
 //
 import React from 'react'
 import classNames from 'classnames'
@@ -19,16 +21,20 @@ library.add(
   faCheck,
   faAngleDown,
   faSearch,
+  faList,
+  faChartBar,
   //regular
-  faFolderPlus
+  faPlusSquare
 )
 
 export type ImportedIcon =
   | 'times'
-  | 'folder-plus'
   | 'check'
   | 'angle-down'
   | 'search'
+  | 'list'
+  | 'plus-square'
+  | 'chart-bar'
 
 export interface Props extends SpaceProps, React.HTMLAttributes<any> {
   className?: string

@@ -5,44 +5,44 @@
 
 export interface components {
   schemas: {
-    DisciplineSchema: { id: number; name: string; category: string };
+    DisciplineSchema: { id: number; name: string; category: string }
     ErrorResponse: {
-      ok?: boolean;
+      ok?: boolean
       error?: Partial<string> &
         Partial<{ [key: string]: any }> &
-        Partial<{ [key: string]: any }[]>;
-      error_code?: string;
-    };
+        Partial<{ [key: string]: any }[]>
+      error_code?: string
+    }
     HTTPValidationError: {
-      detail?: components["schemas"]["ValidationError"][];
-    };
+      detail?: components['schemas']['ValidationError'][]
+    }
     ParameterSchema: {
-      id: number;
-      name: string;
-      type: string;
-      weight: number;
-      value?: string;
-    };
+      id: number
+      name: string
+      type: string
+      weight: number
+      value?: string
+    }
     ProgramCreateSchema: {
-      name: string;
-      description?: string;
-      hours?: number;
-      category?: string;
-      disciplines?: number[];
-      created_at?: string;
-      deleted_at?: string;
-    };
+      name: string
+      description?: string
+      hours?: number
+      category?: string
+      disciplines?: number[]
+      created_at?: string
+      deleted_at?: string
+    }
     ProgramSchema: {
-      name: string;
-      description?: string;
-      hours?: number;
-      category?: string;
-      disciplines: components["schemas"]["DisciplineSchema"][];
-      created_at?: string;
-      deleted_at?: string;
-      id: number;
-      parameters: components["schemas"]["ParameterSchema"][];
-    };
-    ValidationError: { loc: string[]; msg: string; type: string };
-  };
+      name: string
+      description?: string
+      hours?: number
+      category?: string
+      disciplines: components['schemas']['DisciplineSchema'][]
+      created_at?: string
+      deleted_at?: string
+      id: number
+      parameters: components['schemas']['ParameterSchema'][]
+    }
+    ValidationError: { loc: string[]; msg: string; type: string }
+  }
 }
