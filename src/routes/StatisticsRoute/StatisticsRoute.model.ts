@@ -6,7 +6,7 @@ import { getFetcher } from '~/api/fetchers'
 const loadStatisticsRouteSuccess = declareAction<any>()
 export const loadStatisticsRouteActions = declareAction(
   async (_, { dispatch }) => {
-    const { data } = await new Promise((resolve) =>
+    const data = await new Promise((resolve) =>
       resolve({ hello: 'world' } as any)
     )
     dispatch(loadStatisticsRouteSuccess(data))
