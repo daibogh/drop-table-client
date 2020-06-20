@@ -40,11 +40,7 @@ server
           ${metaTags}
           ${stylesTags}
         </head>
-        <body>
-          <div id="root">${content}</div>
-          <script>window.__INITIAL_STATE__ = ${initialState}</script>
-       ${scriptTags}
-        </body>
+        <body><div id="root">${content}</div><script>window.__INITIAL_STATE__ = ${initialState}</script>${scriptTags}</body>
       </html>  `
     )
   })
