@@ -28,7 +28,7 @@ export const ProgrammsList = (props: ProgrammsListProps) => {
   }
   const chunkedPrograms = chunk(4, programs);
   console.log({ programs });
-  
+
   return (
     <Line vertical>
       {chunkedPrograms.map((chunk, idx) => (
@@ -38,7 +38,7 @@ export const ProgrammsList = (props: ProgrammsListProps) => {
               <Card
                 id={program.id}
                 title={program.name}
-                description={`${program.disciplines} дисциплин`}
+                description={`${program.disciplines.length} дисциплин`}
               ></Card>
             </Line>
           ))}

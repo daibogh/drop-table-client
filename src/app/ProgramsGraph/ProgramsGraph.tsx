@@ -12,9 +12,8 @@ const config: Partial<GraphConfiguration<any, any>> = {
   node: {
     color: "lightgreen",
     highlightStrokeColor: "blue",
-    fontSize: 20,
-    highlightFontSize: 20,
-    highlightFontWeight: 'bold'
+    fontSize: 8,
+    highlightFontSize: 8
   },
   link: {
     highlightColor: "lightblue",

@@ -6,12 +6,13 @@ type Program = {
   disciplines: string[]
   rating: number
 }
+type Link = {
+  source: string;
+  target: string
+}
 export const calculateGraphData = (data: Program[]) => {
   const result: {
-    links: {
-      source: string;
-      target: string
-    }[]
+    links: Link[]
     nodes: { id: string; rating: number; x: string; y: string }[]
   } = {
     links: [],
@@ -20,19 +21,19 @@ export const calculateGraphData = (data: Program[]) => {
   if (data.length === 0) {
     return result;
   };
-
+  const notUniqueLinks: Link[] = [];
   const linkDefault = {
     highlightColor: "blue",
-    renderLabel: true,
+    // renderLabel: true,
     highlightFontWeight: "bold",
     semanticStrokeWidth: true,
-    fontSize: 12
+    fontSize: 8
   };
 
   const links: { [key: string]: { id: string; rating: number }[] } = {};
   let ratingOverall = 0;
-  // uniqBy(data, (p) => p.name).
-  data.forEach((p, idx) => {
+  const uniqueLinks: { [key: string]: number } = {}
+  uniqBy((p) => p.name, data).forEach((p, idx) => {
     const node = {
       id: p.name,
       rating: p.rating,
@@ -45,12 +46,12 @@ export const calculateGraphData = (data: Program[]) => {
       if (links[d]) {
         links[d].forEach((n) => {
           if (node.rating > n.rating) {
-            result.links.push({
+            notUniqueLinks.push({
               ...linkDefault,
               source: n.id, target: node.id
             });
           } else {
-            result.links.push({
+            notUniqueLinks.push({
               ...linkDefault,
               source: node.id, target: n.id
             });
@@ -67,6 +68,6 @@ export const calculateGraphData = (data: Program[]) => {
   result.nodes.forEach((node, idx) => {
     node.size *= (node.rating / ratingOverall)
   })
-  console.log({ result })
+  result.links = uniqBy(({ source, target }) => `${source}-${target}`, notUniqueLinks)
   return result;
 };
