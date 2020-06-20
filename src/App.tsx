@@ -10,6 +10,9 @@ import Footer from './components/Footer'
 
 import { Sidebar } from './components/sidebar/Sidebar'
 import { Line } from './components/shared/base/Line'
+
+import './App.scss';
+
 const App: React.FC = () => {
   return (
     <Line className="App">
