@@ -2,9 +2,12 @@ import React from 'react';
 import { SelectField } from 'shared/fields/selectField';
 import { Line } from 'shared/base/line';
 import { Toggle } from 'app/Toggle/Toggle';
+import { useToggle } from 'react-use';
+
 import { Card } from 'app/Card/Card';
 import { Paginator } from 'app/Paginator/Paginator';
 import { Page } from 'app/page/Page/Page';
+import { ProgrammsList } from 'app/ProgrammsList/ProgrammsList';
 
 interface ProgramListPageProps {
   className?: string;
@@ -25,6 +28,7 @@ export const callInOptions = new Map([
 ]);
 
 export const ProgramListPage: React.FC<ProgramListPageProps> = ({ className }) => {
+  const [isList, toggle] = useToggle(true);
   return (
     <Page title="Список образовательных программ">
     <Line h='100' vertical className={`ProgramListPage ${className}`}>
@@ -35,10 +39,13 @@ export const ProgramListPage: React.FC<ProgramListPageProps> = ({ className }) =
           getLabel={(x) => x}
           onChange={() => {
             console.log('');
-          }}></SelectField>
-        <Toggle></Toggle>
+          }}></SelectField>{' '}
+        <Toggle on={isList} toggle={toggle}></Toggle>
       </Line>
-      <Line>
+      <div style={{ height: '100vh' }}>
+        {isList ? <ProgrammsList /> : <>graph</>}
+      </div>
+      {/* <Line>
         <Card title={'03.05.05 Педиатр'} description={'20 дисциплин'}></Card>
         <Card title={'03.05.05 Педиатр'} description={'20 дисциплин'}></Card>
         <Card title={'03.05.05 Педиатр'} description={'20 дисциплин'}></Card>
@@ -62,7 +69,7 @@ export const ProgramListPage: React.FC<ProgramListPageProps> = ({ className }) =
           setPage={() => {
             console.log();
           }}></Paginator>
-      </Line>
+      </Line> */}
     </Line>
     </Page>
   );
