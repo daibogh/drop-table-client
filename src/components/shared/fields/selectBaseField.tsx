@@ -15,7 +15,7 @@ import { Line } from '../base/Line'
 import { Icon } from '../base/Icon'
 import { DropdownItem } from '../base/DropdownItem'
 
-import './SelectBaseField.scss'
+import './selectBaseField.scss'
 
 interface Props<TOption extends object | string | number>
   extends SpaceProps,
@@ -377,8 +377,8 @@ export const SelectBaseField = <TOption extends object | string | number>({
                   disable
                     ? () => {}
                     : onRemove
-                    ? onRemove
-                    : () => onSelectCallback(' ')
+                      ? onRemove
+                      : () => onSelectCallback(' ')
                 }
               >
                 <Icon name="times" className="icon"></Icon>

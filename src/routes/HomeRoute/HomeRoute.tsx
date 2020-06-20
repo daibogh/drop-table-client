@@ -10,7 +10,7 @@ import { Store, getState } from '@reatom/core'
 import { rootAtom } from '../RootRoute/RootRoute.model'
 import { Link } from 'react-router-dom'
 import { Page } from '~/components/shared/page/Page'
-
+import ProgramListPage from '~/ProgramListPage/ProgramListPage'
 const HomeRoute: React.FC = () => {
   const { isLoading, postsList } = usePosts()
   const value = useAtom(rootAtom).testAtom
@@ -18,14 +18,17 @@ const HomeRoute: React.FC = () => {
   const inc = useAction(() => increment())
   const dec = useAction(() => decrement())
   if (isLoading) {
-    return <>...</>
+    // return  <ProgramListPage></ProgramListPage>
+    return <div>...</div>
   }
   if (!postsList) {
     return <>no data...</>
   }
   return (
     <>
-      <Page title="Список образовательных программ"></Page>
+      <Page title="Список образовательных программ">
+        <ProgramListPage></ProgramListPage>
+      </Page>
     </>
   )
 }
@@ -46,3 +49,4 @@ export default createPage(HomeRoute, {
     )
   },
 })
+ 

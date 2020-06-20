@@ -6,11 +6,10 @@ import { getFetcher } from '~/api/fetchers'
 
 const loadPostsSuccess = declareAction<any>()
 export const loadPostsActions = declareAction(async (_, { dispatch }) => {
-  const data = await getFetcher(
+    const data = await getFetcher(
     'http://jsonplaceholder.typicode.com/posts?_start=0&_limit=5'
   )
-  dispatch(loadPostsSuccess(data))
-})
+  dispatch(loadPostsSuccess(data))})
 
 const isLoading = declareAtom(['posts list loading'], false, (on) => [
   on(loadPostsActions, () => true),

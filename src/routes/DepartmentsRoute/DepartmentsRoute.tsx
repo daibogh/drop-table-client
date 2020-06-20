@@ -49,7 +49,7 @@ const DepartmentsRoute: React.FC<DepartmentsRouteProps> = () => {
   console.log({ _data })
   return (
     <div className="DepartmentsRoute">
-      <Graph
+      {/* <Graph
         id="graph-id" // id is mandatory, if no id is defined rd3g will throw an error
         data={data}
         config={myConfig}
@@ -63,7 +63,7 @@ const DepartmentsRoute: React.FC<DepartmentsRouteProps> = () => {
         // onMouseOutNode={onMouseOutNode}
         // onMouseOverLink={onMouseOverLink}
         // onMouseOutLink={onMouseOutLink}
-      />
+      /> */}
     </div>
   )
 }

@@ -2,7 +2,7 @@ import React, { useState, useEffect, ReactChild } from 'react'
 
 import { SpaceProps } from '../base/utils/SpaceUtil'
 import { SizeProps } from '../base/utils/SizeUtil'
-import { SelectBaseField } from './SelectBaseField'
+import { SelectBaseField } from './selectBaseField'
 
 interface Props<TOption extends object | string | number>
   extends SpaceProps,
