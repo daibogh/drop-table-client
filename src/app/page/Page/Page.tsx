@@ -6,7 +6,7 @@ interface PageProps {
   title: string;
 }
 
-const Page: React.FC<PageProps> = ({ title, children }) => {
+export const Page: React.FC<PageProps> = ({ title, children }) => {
   return (
     <Line className="Page" vertical>
       <Line className="title">{title}</Line>

@@ -4,6 +4,7 @@ import { Line } from 'shared/base/line';
 import { Toggle } from 'app/Toggle/Toggle';
 import { Card } from 'app/Card/Card';
 import { Paginator } from 'app/Paginator/Paginator';
+import { Page } from 'app/page/Page/Page';
 
 interface ProgramListPageProps {
   className?: string;
@@ -25,6 +26,7 @@ export const callInOptions = new Map([
 
 export const ProgramListPage: React.FC<ProgramListPageProps> = ({ className }) => {
   return (
+    <Page title="Список образовательных программ">
     <Line vertical className={`ProgramListPage ${className}`}>
       <Line justifyContent="between">
         <SelectField
@@ -62,5 +64,6 @@ export const ProgramListPage: React.FC<ProgramListPageProps> = ({ className }) =
           }}></Paginator>
       </Line>
     </Line>
+    </Page>
   );
 };

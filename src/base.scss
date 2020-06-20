@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,500&display=swap");
 @import "app/constants.scss";
 
-$primary: $blue;
+$primary: $purple;
 $success: $dark-blue;
 $danger: $red;
 $secondary: $grey;
@@ -26,19 +26,6 @@ $input-btn-focus-width: 0.1em;
   width: 7.5rem;
 }
 
-.water {
-  background-color: $water;
-}
-.electricity {
-  background-color: $electricity;
-}
-.gas {
-  background-color: $gas;
-}
-.heat {
-  background-color: $heat;
-}
-
 .bolder-text {
   font-weight: 500;
 }
@@ -51,9 +38,9 @@ $input-btn-focus-width: 0.1em;
 }
 
 .page-item.active .page-link {
-  background-color: $blue;
+  background-color: $purple;
   color: white;
-  border-color: $blue;
+  border-color: $purple;
 }
 
 ::-webkit-scrollbar {

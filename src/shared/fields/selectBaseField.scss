@@ -46,7 +46,7 @@
         border-bottom-right-radius: 0.2em;
       }
       .icon-hover:hover {
-        background-color: $blue;
+        background-color: $purple;
       }
     }
     .box-drag-over {
@@ -85,10 +85,10 @@
     }
 
     .cross-enabled:hover {
-      color: $blue;
+      color: $purple;
     }
     .cross-enabled:active {
-      color: $blue;
+      color: $purple;
     }
     .dropdown-container {
       position: absolute;

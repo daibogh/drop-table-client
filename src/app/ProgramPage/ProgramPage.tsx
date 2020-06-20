@@ -2,6 +2,7 @@ import React, { useCallback } from 'react';
 import { Line } from 'shared/base/line';
 import { TextBoxField } from 'shared/fields/textBoxField';
 // import { TextareaField } from 'shared/fields/textareaField';
+import { Page } from 'app/page/Page/Page';
 import './ProgramPage.scss';
 
 interface ProgramPageProps {
@@ -32,6 +33,7 @@ export const ProgramPage: React.FC<ProgramPageProps> = ({ className }) => {
   }, []);
 
   return (
+    <Page title="Добавление образовательной программы">
     <Line className="ProgramPage">
       <Line vertical w="50">
         <div className="part-title">Паспорт программы</div>
@@ -51,6 +53,7 @@ export const ProgramPage: React.FC<ProgramPageProps> = ({ className }) => {
         {criteria.map((x) => getCriteriaCard(x))}
       </Line>
     </Line>
+    </Page>
   );
 };
 
