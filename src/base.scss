@@ -1,9 +1,70 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,500&display=swap");
+@import "app/constants.scss";
 
-@import '~bootstrap/scss/bootstrap';
+$primary: $blue;
+$success: $dark-blue;
+$danger: $red;
+$secondary: $grey;
 
-$base-font: 'Roboto';
+$btn-line-height-sm: 1.1;
+$input-btn-focus-width: 0.1em;
 
-h1 {
-  font-family: $base-font;
+@import "~bootstrap/scss/bootstrap";
+
+* {
+  font-family: "Roboto", sans-serif;
+}
+
+#root {
+  margin: 0;
+  font-size: 18px;
+}
+
+.btn-sm {
+  font-size: 0.95em;
+  font-weight: lighter;
+  width: 7.5rem;
+}
+
+.water {
+  background-color: $water;
+}
+.electricity {
+  background-color: $electricity;
+}
+.gas {
+  background-color: $gas;
+}
+.heat {
+  background-color: $heat;
+}
+
+.bolder-text {
+  font-weight: 500;
+}
+.lighter-text {
+  font-weight: lighter;
+}
+
+.card {
+  border-radius: 1em;
+}
+
+.page-item.active .page-link {
+  background-color: $blue;
+  color: white;
+  border-color: $blue;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

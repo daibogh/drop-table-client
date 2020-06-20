@@ -1,0 +1,17 @@
+@import "app/constants.scss";
+
+.pagination {
+  .page-link {
+    background: none;
+    margin: 0 0.1em;
+    font-size: 0.75em;
+    border-radius: 0.2em;
+    color: $dark-grey;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .pagination {
+    float: right;
+  }
+}

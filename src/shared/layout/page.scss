@@ -1,0 +1,28 @@
+.page-template {
+  margin: 2em;
+  .title {
+    margin-bottom: 1em;
+  }
+  .page {
+    flex: 3;
+    margin-right: 2em;
+  }
+  .filter {
+    flex: 1;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .page-template {
+    margin: 1.5em;
+    .page {
+      margin: 0;
+    }
+  }
+}
+
+@media screen and (max-width: 365px) {
+  .page-template {
+    margin: 1em;
+  }
+}

@@ -1,0 +1,18 @@
+import React from 'react';
+import { Button } from 'shared/base/Button';
+import './Toggle.scss';
+
+interface ToggleProps {
+  className?: string;
+}
+
+export const Toggle: React.FC<ToggleProps> = ({ className }) => {
+  return (
+    <div className={`Toggle ${className}`}>
+      <div className="btn-group" role="group">
+        <Button className="LeftButton btn btn-primary">Список</Button>
+        <Button className="RightButton btn btn-outline-primary">Граф</Button>
+      </div>
+    </div>
+  );
+};

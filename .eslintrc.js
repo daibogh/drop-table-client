@@ -16,7 +16,7 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module'
   },
-  plugins: ['react', '@typescript-eslint', 'import'],
+  plugins: ['react', '@typescript-eslint', 'import', 'react-hooks'],
   rules: {
     'react/prop-types': 0,
     'no-restricted-imports': ['error', { patterns: ['../*'] }],
@@ -32,6 +32,8 @@ module.exports = {
     'import/no-useless-path-segments': 'error',
     'import/newline-after-import': 'error',
     'import/no-duplicates': 'error',
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
     semi: [2, 'always']
   }
 };
