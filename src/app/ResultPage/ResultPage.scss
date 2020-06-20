@@ -16,6 +16,16 @@
     margin-right: 1em;
     .field {
       font-weight: lighter;
+      .description-title {
+        color: $purple;
+        margin-top: 0.5em;
+      }
+    }
+    .value {
+      color: $purple;
+    }
+    .criteries {
+      font-weight: lighter;
     }
   }
   .sector-title {

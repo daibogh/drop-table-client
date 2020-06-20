@@ -3,7 +3,7 @@ import { Line } from "shared/base";
 import { Card } from "app/Card/Card";
 import { Paginator } from "app/Paginator/Paginator";
 import { useDispatch, useStore, useSelector } from "react-redux";
-import { getProgramsAsync } from "data/programs/actions";
+import { getProgramsAsync, setPrograms } from "data/programs/actions";
 import { StoreType } from "core/store";
 import chunk from "lodash/fp/chunk";
 import useSWR from "swr";
@@ -18,11 +18,17 @@ interface ProgrammsListProps {
 
 export const ProgrammsList = (props: ProgrammsListProps) => {
   const params = queryString.stringify(props);
+  const dispatch = useDispatch();
+
   const { data: programs, error } = useSWR<Program[], Program[]>(
     `${baseUrl}/program?${params}`,
     async (url: string) => (await fetch(url)).json()
   );
-  console.log(error);
+
+  useEffect(() => {
+    dispatch(setPrograms(programs));
+  }, [programs]);
+
   if (!programs) {
     return <>данные обрабатываются... </>;
   }

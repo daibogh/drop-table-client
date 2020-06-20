@@ -6,6 +6,7 @@ import { Line } from 'shared/base/line';
 import { ProgramPage } from './ProgramPage/ProgramPage';
 import { ResultPage } from './ResultPage/ResultPage';
 import { ProgramListPage } from './ProgramListPage/ProgramListPage';
+import { ProgramsGraph } from './ProgramsGraph/ProgramsGraph';
 
 import './app.scss';
 
@@ -19,8 +20,8 @@ export const App: React.FC = () => {
       <div className="main-container">
       <Switch location={location}>
         <Route path="/create" component={ProgramPage} />
-        <Route path="/statistics/:id" component={ResultPage} />
-        <Route path="/statistics" component={ResultPage} />
+        <Route path="/:id" component={ResultPage} />
+        {/* <Route path="/statistics" component={} /> */}
         <Route path="/" component={ProgramListPage} />
         </Switch>
       </div>

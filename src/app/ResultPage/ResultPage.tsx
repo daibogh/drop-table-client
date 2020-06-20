@@ -24,7 +24,7 @@ export const ResultPage: React.FC<ResultPageProps> = ({ className }) => {
       if (item) setModel(item);
     }
   }, [params, list]);
-  console.log(model);
+
   
   return (
     <Page title="Результаты анализа программы">
@@ -38,19 +38,34 @@ export const ResultPage: React.FC<ResultPageProps> = ({ className }) => {
           <Line w="50" className="Block" p="2" vertical>
             <div className="sector-title">Паспорт программы</div>
             <Line vertical className="field" mb="2">
-              <div>Описание</div>
-              <div>{model?.description}</div>
+              <div className="description-title">Описание</div>
+              <div className="description">{model?.description?.slice(0, 400) ?? ''}</div>
             </Line>
-            <Line className="field" mb="2">Количество академических часов: {model?.hours}</Line>
-            <Line className="field" mb="2">Количество дисциплин: {model?.disciplines.length}</Line>
+            <Line className="field" mb="2" alignItems="center">
+              <div><span className="description-title">Количество академических часов:</span> {model?.hours}</div>
+            </Line>
+            <Line className="field" mb="2" alignItems="center">
+              <div><span className="description-title">Количество дисциплин:</span> {model?.disciplines.length}</div>
+            </Line>
           </Line>
-          <Line w="50" className="Block" p="2">
+          <Line w="50" className="Block" p="2" vertical>
             <div className="sector-title">Веса критериев</div>
+              Pie chart
           </Line>
         </Line>
       </Line>
-      <Line mb="2" h="50" className="Block" p="2">
-      <div className="sector-title">Критерии анализа</div>
+      <Line mb="2" h="50" className="Block" p="2" vertical>
+        <Line className="sector-title" mb="2">Критерии анализа</Line>
+          <Line>
+            <Line w="50" vertical className="criteries" mr="2">
+              {model?.parameters.map(x => (
+              <Line justifyContent="between">
+                <div>{x.name}</div>
+                <div className="value">{x.value ?? ''}</div>
+              </Line>))}
+            </Line>
+            <Line>Line graph</Line>
+        </Line>
       </Line>
     </Line>
     </Page>

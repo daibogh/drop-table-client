@@ -22,7 +22,7 @@ export const Card: React.FC<CardProps> = ({
 
   const onClick = useCallback(
     (id: number) =>
-      history.push(`/statistics/${id}`),
+      history.push(`/${id}`),
     [history]
   );
 
