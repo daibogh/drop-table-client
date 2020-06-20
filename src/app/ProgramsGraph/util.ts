@@ -1,3 +1,4 @@
+import uniqBy from 'lodash/fp/uniqBy'
 type Program = {
   id: number
   name: string
@@ -29,13 +30,17 @@ export const calculateGraphData = (data: Program[]) => {
   };
 
   const links: { [key: string]: { id: string; rating: number }[] } = {};
+  let ratingOverall = 0;
+  // uniqBy(data, (p) => p.name).
   data.forEach((p, idx) => {
     const node = {
       id: p.name,
       rating: p.rating,
       x: Math.floor(Math.random() * 500),
-      y: Math.floor(Math.random() * 500)
+      y: Math.floor(Math.random() * 500),
+      size: 10000
     };
+    ratingOverall += p.rating
     p.disciplines.forEach(d => {
       if (links[d]) {
         links[d].forEach((n) => {
@@ -59,5 +64,9 @@ export const calculateGraphData = (data: Program[]) => {
     });
     result.nodes.push(node);
   });
+  result.nodes.forEach((node, idx) => {
+    node.size *= (node.rating / ratingOverall)
+  })
+  console.log({ result })
   return result;
 };
