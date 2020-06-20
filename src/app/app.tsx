@@ -10,7 +10,7 @@ import { ProgramListPage } from './ProgramListPage/ProgramListPage';
 import './app.scss';
 
 export const App: React.FC = () => {
-  const location = useLocation();
+  const location = useLocation();//hello
   return (
     <Line className="app">
       <div className="sidepanel-container">
