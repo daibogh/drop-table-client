@@ -17,6 +17,10 @@ const config: Partial<GraphConfiguration<any, any>> = {
   link: {
     highlightColor: "lightblue",
   },
+  d3: {
+    gravity: 0,
+    linkLength: 180
+  },
   directed: true
 };
 export const ProgramsGraph = () => {

@@ -16,7 +16,7 @@ interface ProgramListPageProps {
 }
 
 export const categoriesMap = new Map([
-  ['все', 'все'],
+  ['', 'все'],
   ['Физика', 'Физика'],
   ['Математика', 'Математика'],
   ['Биология', 'Биология'],
@@ -40,7 +40,7 @@ export const categoriesMap = new Map([
 
 export const ProgramListPage: React.FC<ProgramListPageProps> = ({ className }) => {
   const [isList, toggle] = useToggle(true);
-  const [category, setCategory] = useState<string | undefined>('все')
+  const [category, setCategory] = useState<string | undefined>('')
   return (
     <Page title="Список образовательных программ">
       <Line h='100' vertical className={`ProgramListPage ${className}`}>

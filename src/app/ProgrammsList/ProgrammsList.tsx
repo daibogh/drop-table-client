@@ -9,9 +9,9 @@ import chunk from 'lodash/fp/chunk'
 import useSWR from 'swr';
 import { baseUrl } from 'app/constants';
 import { Program } from 'data/programs/model';
-
+import queryString from 'query-string'
 interface ProgrammsListProps {
-  category?: string | null
+  category?: string
 }
 
 export const ProgrammsList = (props: ProgrammsListProps) => {
@@ -20,13 +20,9 @@ export const ProgrammsList = (props: ProgrammsListProps) => {
   //   dispatch(getProgramsAsync({}));
   // }, []);
   // const programs = useSelector((state: StoreType) => state.programs.programs)
-  const esc = encodeURIComponent;
-  const params = Object.keys(props)
-    .map(k => {
-      return params && params[k] ? esc(k) + '=' + esc(props[k]) : ''
-    }).join('&');
-  const { data: programs, error } = useSWR<any, Program[]>(`${baseUrl}/program`,
-    async (url: string) => (await fetch(`${url}?${params}`)).json());
+  const params = queryString.stringify(props)
+  const { data: programs, error } = useSWR<any, Program[]>(`${baseUrl}/program?${params}`,
+    async (url: string) => (await fetch(url)).json());
   // const d = useMemo(() => calculateGraphData(data || []), [data]);
   console.log(error)
   if (!programs) {
