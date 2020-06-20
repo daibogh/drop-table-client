@@ -5,11 +5,33 @@ type Program = {
   is_deleted: boolean
   disciplines: string[]
   rating: number
+  category: string
 }
 type Link = {
   source: string;
   target: string
 }
+const categoriesMap = new Map([
+  ["Физика", "#f44336"],
+  ["Математика", "#e91e63"],
+  ["Биология", "#4caf50"],
+  ["Медицина", "#009688"],
+  ["Информатика", "#3f51b5"],
+  ["Экология", "#8bc34a"],
+  ["Экономика", "#00bcd4"],
+  ["Химия", "#cddc39"],
+  ["Социология", "#03a9f4"],
+  ["Лингвистика", "#2196f3"],
+  ["Филология", "#ffeb3b"],
+  ["Философия", "#ffc107"],
+  ["Риторика", "#ff9800"],
+  ["Программирование", "#ff5722"],
+  ["Политология", "#b71c1c"],
+  ["Правоведение", "#880e4f"],
+  ["Культурология", "#4a148c"],
+  ["Геополитика", "#311b92"],
+  ["Алгебра", "#006064"],
+]);
 export const calculateGraphData = (data: Program[]) => {
   const result: {
     links: Link[]
@@ -37,9 +59,10 @@ export const calculateGraphData = (data: Program[]) => {
     const node = {
       id: p.name,
       rating: p.rating,
-      x: Math.floor(Math.random() * 500),
+      x: Math.floor(Math.random() * 500) + 1000,
       y: Math.floor(Math.random() * 500),
-      size: 10000
+      size: 30000,
+      color: categoriesMap.get(p.category) || '#009688'
     };
     ratingOverall += p.rating
     p.disciplines.forEach(d => {

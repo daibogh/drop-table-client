@@ -34,7 +34,9 @@ export const ProgrammsList = (props: ProgrammsListProps) => {
   }
   const chunkedPrograms = chunk(4, programs);
   console.log({ programs });
-
+  if (!programs.length) {
+    return <>данных нет</>;
+  }
   return (
     <Line vertical>
       {chunkedPrograms.map((chunk, idx) => (

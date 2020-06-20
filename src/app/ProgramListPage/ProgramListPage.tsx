@@ -60,8 +60,8 @@ export const ProgramListPage: React.FC<ProgramListPageProps> = ({
           {isList ? (
             <ProgrammsList category={category} />
           ) : (
-            <ProgramsGraph />
-          )}
+              <ProgramsGraph category={category} />
+            )}
         </div>
       </Line>
     </Page>
