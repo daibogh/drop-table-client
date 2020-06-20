@@ -9,10 +9,11 @@ import { Helmet } from 'react-helmet-async'
 import SEOTextContainer from '../../containers/SEOTextContainer'
 import { Store, getState } from '@reatom/core'
 import { Page } from '~/components/shared/page/Page'
+import { ResultPage } from '~/components/ResultPage'
 export interface StatisticsRouteProps {}
 const StatisticsRoute: React.FC<StatisticsRouteProps> = () => {
   const posts = useStatisticsRoute()
-  return <Page title="Статистика"></Page>
+  return <Page title="Статистика"><ResultPage></ResultPage></Page>
 }
 
 export default createPage(StatisticsRoute, {
