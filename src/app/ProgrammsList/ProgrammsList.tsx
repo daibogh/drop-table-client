@@ -18,7 +18,7 @@ export const ProgrammsList = () => {
   return <>
     {
       chunkedPrograms.map((chunk, idx) => <Line key={idx}>
-        {chunk.map((program, pidx) => <Card key={`program-${idx}-${pidx}`} title={program.name} description={`${program.disciplines} дисциплин`} />)}
+        {chunk.map((program, pidx) => <Card key={`program-${idx}-${pidx}`} title={program.name} description={`${program.disciplines.length} дисциплин`} />)}
       </Line>)
     }
   </>;
