@@ -1,12 +1,12 @@
 import { useEffect } from 'react'
 import { combine, declareAction, declareAtom } from '@reatom/core'
 import { useAction, useAtom } from '@reatom/react'
-import { getFetcher } from '~/api/fetchers'
+import { getFetcher, fetcher } from '~/api/fetchers'
 
 
 const loadDepartmentsRouteSuccess = declareAction<any>()
 export const loadDepartmentsRouteActions = declareAction(async (_, { dispatch }) => {
-  const { data } = await new Promise((resolve) => resolve({hello:'world'} as any))
+  const data  = await getFetcher('/api/program')
   dispatch(loadDepartmentsRouteSuccess(data))
 })
 
@@ -16,7 +16,7 @@ const isLoading = declareAtom(['DepartmentsRouteState loading'], false, (on) => 
 ])
 
 const stateDepartmentsRoute = declareAtom(['stateDepartmentsRoute'], [] as any[], (on) => [
-  on(loadDepartmentsRouteActions, () => []),
+  on(loadDepartmentsRouteActions, () => ({} as any)),
   on(loadDepartmentsRouteSuccess, (state, payload) => payload),
 ])
 

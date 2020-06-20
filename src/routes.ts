@@ -14,7 +14,7 @@ export const routes = [
         component: HomeRoute,
       },
       {
-        path: '/departemnts',
+        path: '/departments',
         exact: true,
         component: DepartmentsRoute,
       },

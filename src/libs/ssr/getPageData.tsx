@@ -38,7 +38,7 @@ export async function getPageData({ url, context }: any) {
       </StaticRouter>
     </ChunkExtractorManager>
   )
-
+  console.log({store: store.getState()})
   const initialState = JSON.stringify(store.getState())
 
   const scriptTags = extractor.getScriptTags()
