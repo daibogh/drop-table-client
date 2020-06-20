@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
-import { loaderReducer } from 'core/loader';
+import { loaderReducer, LoaderState } from 'core/loader';
 
-import {programsReducer} from './programs/reducer';
+import { programsReducer, ProgramsState } from './programs/reducer';
 
 export const rootReducer = combineReducers({
   loader: loaderReducer,
   programs: programsReducer
-});
+}) as () => { loader: LoaderState; programs: ProgramsState; };

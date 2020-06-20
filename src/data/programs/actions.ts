@@ -4,11 +4,11 @@ import { ActionType } from "data/actionTypes";
 import { Program, Discipline, Parameter } from "./model";
 
 export const getProgramsAsync = createAction<{
-  offset: number;
-  limit: number;
-  category: string;
-  start_time: string;
-  end_time: string;
+  offset?: number;
+  limit?: number;
+  category?: string;
+  start_time?: string;
+  end_time?: string;
 }>(ActionType.PROGRAM_GETPROGRAMSASYNC);
 export const setPrograms = createAction<Program[]>(
   ActionType.PROGRAM_SETPROGRAMS

@@ -7,7 +7,7 @@ interface LoaderSubState {
   [mod: string]: LoaderData;
 }
 
-interface LoaderState {
+export interface LoaderState {
   [actionType: string]: LoaderData | LoaderSubState;
 }
 

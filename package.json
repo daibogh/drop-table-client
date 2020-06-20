@@ -4,17 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --mode development --open",
-    "build": "webpack --mode production",
+    "dev": "MODE=dev webpack-dev-server --mode development --open",
+    "start": "MODE=dev webpack-dev-server --mode development",
+    "build": "MODE=prod webpack --mode production",
     "test": "jest"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/lodash": "^4.14.155",
     "awesome-typescript-loader": "^5.2.1",
     "chromedriver": "83.0.0",
     "css-loader": "^3.4.1",
+    "dotenv-webpack": "^1.8.0",
     "eslint-loader": "^3.0.3",
     "eslint-plugin-react-hooks": "^3.0.0",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
@@ -22,14 +25,14 @@
     "html-webpack-plugin": "^3.2.0",
     "jest": "^25.4.0",
     "node-sass": "^4.13.1",
+    "query-string": "6.8.3",
     "sass-loader": "^8.0.0",
     "selenium-webdriver": "^3.6.0",
     "style-loader": "^1.1.2",
     "typescript": "^3.7.4",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10",
-    "webpack-dev-server": "^3.10.1",
-    "query-string": "6.8.3"
+    "webpack-dev-server": "^3.10.1"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "1.2.19",
@@ -46,6 +49,7 @@
     "@types/react-router": "^5.1.7",
     "@types/react-router-dom": "^5.1.5",
     "@types/react-text-mask": "^5.4.6",
+    "@types/redux-logger": "^3.0.8",
     "@types/yup": "^0.26.32",
     "@typescript-eslint/eslint-plugin": "^2.15.0",
     "@typescript-eslint/parser": "^2.15.0",
@@ -57,6 +61,7 @@
     "eslint-plugin-import": "^2.19.1",
     "eslint-plugin-react": "^7.17.0",
     "fs": "0.0.1-security",
+    "lodash": "^4.17.15",
     "prettier": "^2.0.5",
     "query-string": "^6.12.1",
     "querystring": "^0.2.0",
@@ -69,6 +74,7 @@
     "react-use": "^15.3.0",
     "react-yandex-maps": "^4.2.0",
     "redux": "^4.0.5",
+    "redux-logger": "^3.0.6",
     "redux-observable": "^1.2.0",
     "rxjs": "^6.5.4",
     "yup": "^0.28.1"
