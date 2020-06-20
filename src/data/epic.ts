@@ -1,3 +1,5 @@
 import { combineEpics } from 'redux-observable';
 
-export const rootEpic = combineEpics();
+import { programsEpic} from './programs/epic';
+
+export const rootEpic = combineEpics(programsEpic);

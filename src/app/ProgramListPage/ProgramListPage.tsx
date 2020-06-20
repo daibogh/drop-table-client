@@ -33,7 +33,7 @@ export const ProgramListPage: React.FC<ProgramListPageProps> = ({ className }) =
           getLabel={(x) => x}
           onChange={() => {
             console.log('');
-          }}></SelectField>{' '}
+          }}></SelectField>
         <Toggle></Toggle>
       </Line>
       <Line>
