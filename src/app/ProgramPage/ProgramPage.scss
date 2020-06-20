@@ -1,27 +1,57 @@
+@import 'app/constants.scss';
+
 .ProgramPage {
   width: 100%;
   .part-title {
     font-weight: 500;
-    color: #787878;
+    color: $purple;
     margin-bottom: 1em;
   }
   .form-group,
   .form-control {
     label {
       font-size: 0.9em;
+      margin-bottom: 0;
+      font-weight: lighter;
+      color: $dark-grey;
     }
     input,
     textarea {
       font-size: 0.9em;
       font-style: italic;
+      font-weight: lighter;
     }
+    margin-bottom: 0;
   }
   .criteria-card {
-    padding: 0 0.5em;
+    padding: 0.25em 1em;
     border: 1px solid #d3d3d3;
     border-radius: 0.5em;
+    .criteria-name {
+      width: 50%;
+      color: $dark-grey;
+      font-size: 0.9em;
+    }
+  }
+  .criteria-card:hover {
+    border-color: $purple;
   }
   .criteria-card:not(:last-child) {
     margin-bottom: 0.5em;
+  }
+  .discipline-card {
+    border: 1px solid #d3d3d3;
+    border-radius: 0.5em;
+    padding: 0.35em 0.8em;
+    font-weight: lighter;
+    .icon {
+      color: #d3d3d3;
+    }
+    .icon:hover {
+      color: $purple;
+    }
+  }
+  .discipline-card:not(:last-child) {
+    margin-bottom: 0.55em;
   }
 }

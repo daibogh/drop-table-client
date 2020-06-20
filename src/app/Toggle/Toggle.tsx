@@ -1,8 +1,7 @@
 import React from 'react';
-import classnames from 'classnames'
-import { Button } from 'shared/base/Button';
+import classnames from 'classnames';
+import { Button } from 'shared/base';
 import './Toggle.scss';
-import { useToggle } from 'react-use';
 
 interface ToggleProps {
   className?: string;

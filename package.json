@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "MODE=dev webpack-dev-server --mode development --open",
+    "dev": "webpack-dev-server --mode development --open",
     "start": "MODE=dev webpack-dev-server --mode development",
     "build": "MODE=prod webpack --mode production",
     "test": "jest"

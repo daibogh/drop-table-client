@@ -1,8 +1,12 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import classNames from 'classnames';
 import { ObjectSchema } from 'yup';
+import { SizeProps, propsToSize } from 'shared/base/utils/sizeUtil';
+import { SpaceProps, propsToSpace } from 'shared/base/utils/spaceUtil';
 
-interface Props {
+import './textBoxField.scss';
+
+interface Props extends SizeProps, SpaceProps {
   name: string;
   value: string | null | undefined;
   onChange: (value: string) => void;
@@ -12,8 +16,14 @@ interface Props {
   size?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 'auto';
   type?: string;
   prepend?: JSX.Element;
+  autofocus?: boolean;
   className?: string;
-  isInvalid?: boolean;
+  inline?: boolean;
+  required?: boolean;
+  min?: number;
+  max?: number;
+  disabled?: boolean;
+  onKeyDown?: (e: React.KeyboardEvent<any>) => void;
 }
 
 export const TextBoxField: React.FC<Props> = ({
@@ -27,8 +37,15 @@ export const TextBoxField: React.FC<Props> = ({
   size,
   children,
   prepend,
+  autofocus,
   className,
-  isInvalid,
+  inline,
+  min,
+  max,
+  required,
+  disabled,
+  onKeyDown,
+  ...other
 }) => {
   value = value == null ? '' : value;
   const [message, setMessage] = useState(null);
@@ -36,12 +53,12 @@ export const TextBoxField: React.FC<Props> = ({
     let canceled = false;
     if (schema != null && fieldPath != null)
       schema
-        .validate({ [`${fieldPath}`]: value })
+        .validateAt(fieldPath, value)
         .then(() => {
           if (!canceled) setMessage(null);
           return null;
         })
-        .catch((x) => {
+        .catch(x => {
           if (!canceled) setMessage(x.message);
           return null;
         });
@@ -50,34 +67,45 @@ export const TextBoxField: React.FC<Props> = ({
     };
   });
 
-  const onchange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => onChange(e.target.value),
-    [onChange]
-  );
+  const onchange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => onChange(e.target.value), [onChange]);
+  const onkeydown = useCallback((e: React.KeyboardEvent<any>) => (onKeyDown ? onKeyDown(e) : undefined), [onKeyDown]);
 
   return (
     <div
       className={classNames(
-        'form-group',
-        { [`col-md-${size}`]: size != null },
-        className
+        `textBoxField form-group `,
+        className,
+        {
+          [`col-md-${size}`]: size != null,
+          ' inline': inline
+        },
+        propsToSize(other),
+        propsToSpace(other)
+      )}>
+      {children && (
+        <label htmlFor={name} className="label">
+          {children}
+        </label>
       )}
-    >
-      {children && <label htmlFor={name}>{children}</label>}
-      <div className="input-group">
+      <div className={classNames('input-group', { required })}>
         {prepend && (
           <div className="input-group-prepend">
             <div className="input-group-text">{prepend}</div>
           </div>
         )}
         <input
+          disabled={disabled}
           type={type}
-          className={classNames('form-control', { 'is-invalid': isInvalid })}
+          className={classNames('form-control', { 'is-invalid': message })}
           id={name}
           name={name}
           placeholder={placeholder}
           onChange={onchange}
+          onKeyDown={onKeyDown ?? onkeydown}
           value={value}
+          autoFocus={autofocus}
+          min={min}
+          max={max}
         />
       </div>
       <div className="invalid-feedback">{message}</div>
