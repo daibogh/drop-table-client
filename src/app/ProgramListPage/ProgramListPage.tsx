@@ -1,70 +1,69 @@
-import useSWR from "swr";
-import { baseUrl } from "app/constants";
-import { Program } from "data/programs/model";
-import React from "react";
+import React, { useState } from "react";
+import { Page } from "app/page/Page/Page";
 import { Line } from "shared/base";
-import { Card } from "app/Card/Card";
-import { Paginator } from "app/Paginator/Paginator";
-import { chunk } from "lodash";
+import { useToggle } from "react-use";
+import { useSelector } from "react-redux";
+import { SelectField } from "shared/fields";
+import { Toggle } from "app/Toggle/Toggle";
+import { ProgrammsList } from "app/ProgrammsList/ProgrammsList";
+import { ProgramsGraph } from "app/ProgramsGraph/ProgramsGraph";
+import { StoreType } from "core/store";
 
-interface ProgrammsListProps {
-  category?: string | null;
+interface ProgramListPageProps {
+  className?: string;
 }
 
-export const ProgrammsList = (props: ProgrammsListProps) => {
-  // const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(getProgramsAsync({}));
-  // }, []);
-  // const programs = useSelector((state: StoreType) => state.programs.programs)
-  const esc = encodeURIComponent;
-  const params = Object.keys(props)
-    .map((k) => {
-      return params && params[k] ? esc(k) + "=" + esc(props[k]) : "";
-    })
-    .join("&");
-  const { data: programs, error } = useSWR<any, Program[]>(
-    `${baseUrl}/program`,
-    async (url: string) => (await fetch(`${url}?${params}`)).json()
-  );
-  // const d = useMemo(() => calculateGraphData(data || []), [data]);
-  console.log(error);
+export const categoriesMap = new Map([
+  ["", "все"],
+  ["Физика", "Физика"],
+  ["Математика", "Математика"],
+  ["Биология", "Биология"],
+  ["Медицина", "Медицина"],
+  ["Информатика", "Информатика"],
+  ["Экология", "Экология"],
+  ["Экономика", "Экономика"],
+  ["Химия", "Химия"],
+  ["Социология", "Социология"],
+  ["Лингвистика", "Лингвистика"],
+  ["Филология", "Филология"],
+  ["Философия", "Философия"],
+  ["Риторика", "Риторика"],
+  ["Программирование", "Программирование"],
+  ["Политология", "Политология"],
+  ["Правоведение", "Правоведение"],
+  ["Культурология", "Культурология"],
+  ["Геополитика", "Геополитика"],
+  ["Алгебра", "Алгебра"],
+]);
 
-  if (!programs) {
-    return <>данные обрабатываются... </>;
-  }
+export const ProgramListPage: React.FC<ProgramListPageProps> = ({
+  className,
+}) => {
+  const programs = useSelector((state: StoreType) => state.programs.programs);
 
-  const chunkedPrograms = chunk(programs, 4);
-  
+  const [isList, toggle] = useToggle(true);
+  const [category, setCategory] = useState<string | undefined>("");
+
   return (
-    <Line vertical>
-      {chunkedPrograms.map((chunk, idx) => (
-        <Line key={idx}>
-          {chunk.map((program, pidx) => (
-            <Line pb="1" w="25" key={`program-${idx}-${pidx}`}>
-              <Card
-                title={program['name']}
-                description={`${program['disciplines']} дисциплин`}
-              ></Card>
-            </Line>
-          ))}
+    <Page title="Список образовательных программ">
+      <Line h="100" vertical className={`ProgramListPage ${className}`}>
+        <Line justifyContent="between">
+          <SelectField
+            value={category}
+            options={categoriesMap}
+            getLabel={(x) => x}
+            onChange={setCategory}
+          ></SelectField>
+          <Toggle on={isList} toggle={toggle}></Toggle>
         </Line>
-      ))}
-
-      <Line mt="2" mb="2" justifyContent="end">
-        <Paginator
-          page={{
-            items: [],
-            totalItems: programs?.length,
-            totalPages: programs.length / 8,
-            currentPage: 1,
-            pageSize: 8,
-          }}
-          setPage={() => {
-            console.log();
-          }}
-        ></Paginator>
+        <div style={{ height: "100vh" }}>
+          {isList ? (
+            <ProgrammsList category={category} />
+          ) : (
+            <ProgramsGraph />
+          )}
+        </div>
       </Line>
-    </Line>
+    </Page>
   );
 };

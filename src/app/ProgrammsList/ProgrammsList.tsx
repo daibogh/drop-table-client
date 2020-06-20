@@ -1,67 +1,64 @@
-import React, { useState } from "react";
-import { Page } from "app/page/Page/Page";
+import React, { useCallback, useEffect, useMemo } from "react";
 import { Line } from "shared/base";
-import { useToggle } from "react-use";
-import { useSelector } from "react-redux";
-import { SelectField } from "shared/fields";
-import { Toggle } from "app/Toggle/Toggle";
-import { ProgrammsList } from "app/ProgrammsList/ProgrammsList";
-import { ProgramsGraph } from "app/ProgramsGraph/ProgramsGraph";
+import { Card } from "app/Card/Card";
+import { Paginator } from "app/Paginator/Paginator";
+import { useDispatch, useStore, useSelector } from "react-redux";
+import { getProgramsAsync } from "data/programs/actions";
 import { StoreType } from "core/store";
+import chunk from "lodash/fp/chunk";
+import useSWR from "swr";
+import { baseUrl } from "app/constants";
+import { Program } from "data/programs/model";
+import queryString from "query-string";
 
-interface ProgramListPageProps {
-  className?: string;
+interface ProgrammsListProps {
+  category?: string;
+
 }
 
-export const categoriesMap = new Map([
-  ["все", "все"],
-  ["Физика", "Физика"],
-  ["Математика", "Математика"],
-  ["Биология", "Биология"],
-  ["Медицина", "Медицина"],
-  ["Информатика", "Информатика"],
-  ["Экология", "Экология"],
-  ["Экономика", "Экономика"],
-  ["Химия", "Химия"],
-  ["Социология", "Социология"],
-  ["Лингвистика", "Лингвистика"],
-  ["Филология", "Филология"],
-  ["Философия", "Философия"],
-  ["Риторика", "Риторика"],
-  ["Программирование", "Программирование"],
-  ["Политология", "Политология"],
-  ["Правоведение", "Правоведение"],
-  ["Культурология", "Культурология"],
-  ["Геополитика", "Геополитика"],
-  ["Алгебра", "Алгебра"],
-]);
-
-export const ProgramListPage: React.FC<ProgramListPageProps> = ({
-  className,
-}) => {
-  const programs = useSelector((state: StoreType) => state.programs.programs);
-  const [isList, toggle] = useToggle(true);
-  const [category, setCategory] = useState<string | undefined>("все");
+export const ProgrammsList = (props: ProgrammsListProps) => {
+  const params = queryString.stringify(props);
+  const { data: programs, error } = useSWR<Program[], Program[]>(
+    `${baseUrl}/program?${params}`,
+    async (url: string) => (await fetch(url)).json()
+  );
+  console.log(error);
+  if (!programs) {
+    return <>данные обрабатываются... </>;
+  }
+  const chunkedPrograms = chunk(4, programs);
+  console.log({ programs });
+  
   return (
-    <Page title="Список образовательных программ">
-      <Line h="100" vertical className={`ProgramListPage ${className}`}>
-        <Line justifyContent="between">
-          <SelectField
-            value={category}
-            options={categoriesMap}
-            getLabel={(x) => x}
-            onChange={setCategory}
-          ></SelectField>
-          <Toggle on={isList} toggle={toggle}></Toggle>
+    <Line vertical>
+      {chunkedPrograms.map((chunk, idx) => (
+        <Line key={idx}>
+          {chunk.map((program, pidx) => (
+            <Line pb="1" w="25" key={`program-${idx}-${pidx}`}>
+              <Card
+                id={program.id}
+                title={program.name}
+                description={`${program.disciplines} дисциплин`}
+              ></Card>
+            </Line>
+          ))}
         </Line>
-        <div style={{ height: "100vh" }}>
-          {isList ? (
-            <ProgrammsList category={category === "все" ? null : category} />
-          ) : (
-            <ProgramsGraph />
-          )}
-        </div>
+      ))}
+
+      <Line mt="2" mb="2" justifyContent="end">
+        <Paginator
+          page={{
+            items: [],
+            totalItems: programs?.length,
+            totalPages: programs?.length / 8,
+            currentPage: 1,
+            pageSize: 8,
+          }}
+          setPage={() => {
+            console.log();
+          }}
+        ></Paginator>
       </Line>
-    </Page>
+    </Line>
   );
 };
