@@ -12,18 +12,18 @@ module.exports = {
   plugins: [
     'babel-ts',
     'bundle-analyzer',
-    {
-      name:'workbox',
-      options: {
-        swDest: 'static/service-worker.js',
-        runtimeCaching: [
-          {
-            // urlPattern: /^https?\:\/\/.*static.*(chunk\.js|bundle.*\.css)$/,
-            urlPattern: /^https?\:\/\/.*$/,
-            handler: 'StaleWhileRevalidate',
-          }]
-      }
-  },
+  //   {
+  //     name:'workbox',
+  //     options: {
+  //       swDest: 'static/service-worker.js',
+  //       runtimeCaching: [
+  //         {
+  //           // urlPattern: /^https?\:\/\/.*static.*(chunk\.js|bundle.*\.css)$/,
+  //           urlPattern: /^https?\:\/\/.*$/,
+  //           handler: 'StaleWhileRevalidate',
+  //         }]
+  //     }
+  // },
   // {
   //   name: "manifest",
   //   options: {
