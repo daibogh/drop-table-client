@@ -4,6 +4,7 @@ import { http } from "core/http";
 import { Graph, GraphConfiguration } from "react-d3-graph";
 import { baseUrl } from 'app/constants';
 
+import './ProgramsGraph.scss';
 import { calculateGraphData } from './util';
 
 const config: Partial<GraphConfiguration<any, any>> = {
@@ -26,15 +27,11 @@ export const ProgramsGraph = () => {
   }
   console.log({ data });
 
-  // return <div>
-  //   {JSON.stringify(data)}
-
-  // </div>
-  return <Graph
+  return <div className="ProgramsGraph"><Graph
     id="graph-id" // id is mandatory, if no id is defined rd3g will throw an error
     data={d}
     config={config}
-  />;
+  /></div>;
 };
 // onClickNode={onClickNode}
   // onDoubleClickNode={onDoubleClickNode}

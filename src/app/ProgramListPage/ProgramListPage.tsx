@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import { SelectField } from 'shared/fields/selectField';
 import { Line } from 'shared/base/line';
 import { Toggle } from 'app/Toggle/Toggle';
@@ -9,42 +9,51 @@ import { Paginator } from 'app/Paginator/Paginator';
 import { Page } from 'app/page/Page/Page';
 import { ProgrammsList } from 'app/ProgrammsList/ProgrammsList';
 import { ProgramsGraph } from 'app/ProgramsGraph/ProgramsGraph';
+import { Program } from 'data/programs/model';
 
 interface ProgramListPageProps {
   className?: string;
 }
 
-export const callInOptions = new Map([
-  ['0', 'Select'],
-  ['name', 'Медицина'],
-  ['number', 'Number'],
-  ['seniority', 'SeniorityHelper'],
-  ['telephone', 'Phone'],
-  ['callInSched', 'Call In Schedules'],
-  ['bookSelSeq', 'BookSelSeq'],
-  ['plant', 'Facility'],
-  ['department', 'Department'],
-  ['class', 'Class'],
-  ['typeFTPT', 'Type'],
+export const categoriesMap = new Map([
+  ['все', 'все'],
+  ['Физика', 'Физика'],
+  ['Математика', 'Математика'],
+  ['Биология', 'Биология'],
+  ['Медицина', 'Медицина'],
+  ['Информатика', 'Информатика'],
+  ['Экология', 'Экология'],
+  ['Экономика', 'Экономика'],
+  ['Химия', 'Химия'],
+  ['Социология', 'Социология'],
+  ['Лингвистика', 'Лингвистика'],
+  ['Филология', 'Филология'],
+  ['Философия', 'Философия'],
+  ['Риторика', 'Риторика'],
+  ['Программирование', 'Программирование'],
+  ['Политология', 'Политология'],
+  ['Правоведение', 'Правоведение'],
+  ['Культурология', 'Культурология'],
+  ['Геополитика', 'Геополитика'],
+  ['Алгебра', 'Алгебра'],
 ]);
 
 export const ProgramListPage: React.FC<ProgramListPageProps> = ({ className }) => {
   const [isList, toggle] = useToggle(true);
+  const [category, setCategory] = useState<string | undefined>('все')
   return (
     <Page title="Список образовательных программ">
       <Line h='100' vertical className={`ProgramListPage ${className}`}>
         <Line justifyContent="between">
           <SelectField
-            value={'name'}
-            options={callInOptions}
+            value={category}
+            options={categoriesMap}
             getLabel={(x) => x}
-            onChange={() => {
-              console.log('');
-            }}></SelectField>{' '}
-          <Toggle on={isList} toggle={toggle}></Toggle>
+            onChange={setCategory} />
+          <Toggle on={isList} toggle={toggle} />
         </Line>
         <div style={{ height: '100vh' }}>
-          {isList ? <ProgrammsList /> : <ProgramsGraph />}
+          {isList ? <ProgrammsList category={category === 'все' ? null : category} /> : <ProgramsGraph />}
         </div>
         {/* <Line>
         <Card title={'03.05.05 Педиатр'} description={'20 дисциплин'}></Card>
