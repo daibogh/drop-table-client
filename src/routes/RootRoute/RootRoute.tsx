@@ -5,14 +5,15 @@ import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import { renderRoutes, RouteConfigComponentProps } from 'react-router-config'
 import { rootAtom } from './RootRoute.model'
+import { Line } from '~/components/shared/base/Line'
 // const Header = loadable(() => import('../../components/Header'))
 // const Footer = loadable(() => import('../../components/Footer'))
 
 const RootRoute: React.FC<RouteConfigComponentProps<any>> = ({ route }) => (
-  <div>
+  <Line w="100">
     {/* child routes won't render without this */}
     {renderRoutes(route?.routes)}
-  </div>
+  </Line>
 )
 
 export default createPage(RootRoute, { model: rootAtom, getInitialData: null })

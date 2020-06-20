@@ -1,0 +1,27 @@
+.ProgramPage {
+  width: 100%;
+  .part-title {
+    font-weight: 500;
+    color: #787878;
+    margin-bottom: 1em;
+  }
+  .form-group,
+  .form-control {
+    label {
+      font-size: 0.9em;
+    }
+    input,
+    textarea {
+      font-size: 0.9em;
+      font-style: italic;
+    }
+  }
+  .criteria-card {
+    padding: 0 0.5em;
+    border: 1px solid #d3d3d3;
+    border-radius: 0.5em;
+  }
+  .criteria-card:not(:last-child) {
+    margin-bottom: 0.5em;
+  }
+}

@@ -9,7 +9,7 @@ interface PageProps {
 
 const Page: React.FunctionComponent<PageProps> = ({ title, children }) => {
   return (
-    <Line className="Page">
+    <Line className="Page" vertical>
       <Line className="title">{title}</Line>
       {children}
     </Line>
