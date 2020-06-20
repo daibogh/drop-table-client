@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react'
+import React, { useCallback } from 'react'
 import classNames from 'classnames'
 
 import { SizeProps, propsToSize } from '../base/utils/SizeUtil'
@@ -30,11 +30,9 @@ export const TextBoxField: React.FC<Props> = ({
   type = 'text',
   onChange,
   placeholder,
-  fieldPath,
   size,
   children,
   prepend,
-  autofocus,
   className,
   inline,
   min,
@@ -45,7 +43,6 @@ export const TextBoxField: React.FC<Props> = ({
   ...other
 }) => {
   value = value == null ? '' : value
-  const [message, setMessage] = useState(null)
 
   const onchange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => onChange(e.target.value),
@@ -82,19 +79,17 @@ export const TextBoxField: React.FC<Props> = ({
         <input
           disabled={disabled}
           type={type}
-          className={classNames('form-control', { 'is-invalid': message })}
+          className={classNames('form-control')}
           id={name}
           name={name}
           placeholder={placeholder}
           onChange={onchange}
           onKeyDown={onKeyDown ?? onkeydown}
           value={value}
-          autoFocus={autofocus}
           min={min}
           max={max}
         />
       </div>
-      <div className="invalid-feedback">{message}</div>
     </div>
   )
 }

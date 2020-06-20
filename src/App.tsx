@@ -1,18 +1,14 @@
-import React, { useEffect } from 'react'
-import loadable from '@loadable/component'
-import './App.scss'
-import { createStore } from '@reatom/core'
-import { context } from '@reatom/react'
-import { connectReduxDevtools } from '@reatom/debug'
+import React from 'react'
+
 import { renderRoutes } from 'react-router-config'
 import { routes } from './routes'
-import Footer from './components/Footer'
 import { Sidebar } from './components/sidebar/Sidebar'
 import { Line } from './components/shared/base/Line'
+import './App.scss'
 
 const App: React.FC = () => {
   return (
-    <Line className="App">
+    <Line w='100' className="App">
       <Sidebar />
       {renderRoutes(routes as any[])}
     </Line>

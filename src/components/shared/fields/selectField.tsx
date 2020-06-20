@@ -1,10 +1,10 @@
-import React, { useState, useEffect, ReactChild } from 'react'
+import React, { ReactChild } from 'react'
 
 import { SpaceProps } from '../base/utils/SpaceUtil'
 import { SizeProps } from '../base/utils/SizeUtil'
 import { SelectBaseField } from './selectBaseField'
 
-interface Props<TOption extends object | string | number>
+interface Props<TOption extends  string | number>
   extends SpaceProps,
     SizeProps {
   getContent?: (option: TOption) => ReactChild
@@ -28,12 +28,11 @@ interface Props<TOption extends object | string | number>
   title?: string
 }
 
-export const SelectField = <TOption extends object | string | number>({
+export const SelectField = <TOption extends  string | number>({
   getContent,
   options,
   getLabel,
   onChange,
-  fieldPath,
   value,
   showSearch,
   disable,
@@ -46,7 +45,6 @@ export const SelectField = <TOption extends object | string | number>({
   title,
   ...other
 }: Props<TOption>) => {
-  const [message, setMessage] = useState(null)
 
   return (
     <>
@@ -67,7 +65,6 @@ export const SelectField = <TOption extends object | string | number>({
         title={title}
         {...other}
       ></SelectBaseField>
-      <div className="invalid-feedback">{message}</div>
     </>
   )
 }

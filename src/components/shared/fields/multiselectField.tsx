@@ -1,7 +1,7 @@
 import React, { ReactChild } from 'react'
 import { SelectBaseField } from './selectBaseField'
 
-interface Props<TOption extends object | string | number> {
+interface Props<TOption extends  string | number> {
   getContent?: (option: TOption) => ReactChild
   label?: string
   size?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 'auto'
@@ -18,7 +18,7 @@ interface Props<TOption extends object | string | number> {
   alphabeticalOrder?: boolean
 }
 
-export const MultiselectField = <TOption extends object | string | number>({
+export const MultiselectField = <TOption extends  string | number>({
   getContent,
   options,
   getLabel,

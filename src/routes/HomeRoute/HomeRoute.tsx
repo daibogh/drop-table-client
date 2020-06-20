@@ -25,9 +25,7 @@ const HomeRoute: React.FC = () => {
     return <>no data...</>
   }
   return (
-    <>
-      <Page title="Список образовательных программ"><ProgramListPage></ProgramListPage></Page>
-    </>
+    <Page title="Список образовательных программ"><ProgramListPage></ProgramListPage></Page>
   )
 }
 
