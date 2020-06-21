@@ -7,7 +7,7 @@ const favicon = require("serve-favicon");
 
 /*eslint-disable no-console */
 
-const port = 80; //process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
 const app = express();
 
 app.use(compression());
