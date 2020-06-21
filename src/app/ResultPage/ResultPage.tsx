@@ -59,7 +59,7 @@ export const ResultPage: React.FC<ResultPageProps> = ({ className }) => {
 
   return (
     <Page title="Результаты анализа программы">
-      {model && <Line h="100" vertical pt="3" w="100" className={`ResultPage ${className}`}>
+      {model && <Line h="100" vertical pt="2" w="100" className={`ResultPage ${className}`}>
         <Line vertical h="50" mb="1">
           <Line vertical>
             <div className="Title">{model?.name}</div>
