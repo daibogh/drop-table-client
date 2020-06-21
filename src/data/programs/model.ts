@@ -57,5 +57,5 @@ export interface Program {
 
   export interface Stats {
     ok: boolean;
-    data: YearStats[]
+    data: {[key: number]: YearStats}
   }

@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Line } from 'shared/base';
-import { Page } from './page/Page/Page';
 import { Bar } from 'react-chartjs-2';
+import { useSelector, useDispatch } from 'react-redux';
+import { StoreType } from 'core/store';
+import { getStatsAsync } from 'data/programs/actions';
+
+import { Page } from './page/Page/Page';
+import { YearDiff } from 'data/programs/model';
 
 const backgroundColor = [
   '#89B6A5',
@@ -28,34 +33,42 @@ const backgroundColor = [
 ];
 
 export const BarChartPage: React.FC = () => {
+  const dispatch = useDispatch();
+  const stats = useSelector((state: StoreType) => state.programs.stats);
+
+  useEffect(() => {
+    dispatch(getStatsAsync({}));
+  }, [dispatch]);
+
   return (
     <Page title="Общая статистика вуза">
-      <Line mt="5">
+      {stats && <Line mt="5">
         <Bar
           data={{
-            labels: ["2007", "2008", "2009", "2010", "2011", "2012", "2013"],
+            labels: Object.keys(stats),
             datasets: [
               {
                 backgroundColor,
-                data: [65, 59, 80, 81, 56, 55, 40],
-              },
+                data: Object.values(stats).map(x => x.rating),
+              }
             ],
           }}
           options={{
             legend: { display: false },
             tooltips: {
               callbacks: {
-                title: function (tooltipItem, data) {
-                  return "Рекомендации";
-                },
                 afterLabel: function (tooltipItem, data) {
-                  return "Тело";
+                  const added = `Добавлено - ${stats[tooltipItem.xLabel]?.diff.added.length ?? 0}\n• `;
+                  const addedList = stats[tooltipItem.xLabel]?.diff.added.map(x => x.name).join('\n• ');
+                  const removed = `\nЗакрыто - ${stats[tooltipItem.xLabel]?.diff.removed.length ?? 0}\n• `;
+                  const removedList = stats[tooltipItem.xLabel]?.diff.removed.map(x => x.name).join('\n• ');
+                  return added + addedList + removed + removedList;
                 },
               },
             },
           }}
         ></Bar>
-      </Line>
+      </Line>}
     </Page>
   );
 };
