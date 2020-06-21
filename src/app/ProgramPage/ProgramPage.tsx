@@ -128,7 +128,7 @@ export const ProgramPage: React.FC = () => {
           {
             ...localProgram,
             category: category,
-            parameters: parametrs,
+            parameters: localParamters,
             disciplines: arr,
           },
           undefined,
@@ -162,24 +162,29 @@ export const ProgramPage: React.FC = () => {
     category,
     parametrs,
     history,
+    localParamters
   ]);
 
   const setParametr = useCallback(
     (v: Parameter, val: number | string, type: string) => {
-      return [
-        ...localParamters.slice(0, v.id - 1),
-        { ...v, [type]: val },
-        ...localParamters.slice(v.id),
-      ];
+      const newLocalParameters = localParamters.map((param) => param.id === v.id ? { ...v, [type]: val } : param);
+      setLocalParametrs(
+        newLocalParameters
+        //   [
+        //   ...localParamters.slice(0, v.id - 1),
+        //   { ...v, [type]: val },
+        //   ...localParamters.slice(v.id),
+        // ]
+      );
     },
     [localParamters]
   );
 
   const getCriteriaCard = useCallback(
-    (criteria: Parameter) => {
+    (criteria: Parameter, idx) => {
       return (
         <Line
-          key={criteria.id}
+          key={`${criteria.name}${criteria.id}${idx}`}
           className="criteria-card"
           alignItems="center"
           justifyContent="between"
@@ -192,7 +197,7 @@ export const ProgramPage: React.FC = () => {
             name="criteria-weight"
             value={criteria.value.toString()}
             onChange={(v) =>
-              setLocalParametrs(setParametr(criteria, v, "value"))
+              setParametr(criteria, v, "value")
             }
             type="number"
             inline
@@ -204,7 +209,7 @@ export const ProgramPage: React.FC = () => {
             name="criteria-weight"
             value={criteria.weight.toString()}
             onChange={(v) =>
-              setLocalParametrs(setParametr(criteria, Number(v), "weight"))
+              setParametr(criteria, Number(v), "weight")
             }
             type="number"
             inline
@@ -278,7 +283,7 @@ export const ProgramPage: React.FC = () => {
           </Line>
           <Line vertical w="50">
             <div className="part-title">Веса критериев анализа</div>
-            {localParamters.map((x) => getCriteriaCard(x))}
+            {localParamters.map((x, idx) => getCriteriaCard(x, idx))}
           </Line>
         </Line>
       </Line>
