@@ -27,8 +27,8 @@ const config: Partial<GraphConfiguration<any, any>> = {
   width: 800,
   d3: {
     alphaTarget: 0.05,
-    gravity: -1050,
-    linkLength: 120,
+    gravity: -1200,
+    linkLength: 150,
     linkStrength: 2,
     disableLinkForce: true
   },
