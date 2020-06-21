@@ -62,7 +62,7 @@ export const calculateGraphData = (data: Program[]) => {
       id: `${p.name} ${p?.is_deleted ? '(программа закрыта)' : ''}`,
       rating: p.rating,
       fontColor: p?.is_deleted ? 'red' : '#000',
-      x: Math.floor(Math.random() * 500) + 1000,
+      x: Math.floor(Math.random() * 500) + 300,
       y: Math.floor(Math.random() * 500),
       size: 30000,
       color: categoriesMap.get(p.category) || '#009688'
