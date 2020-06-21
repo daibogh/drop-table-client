@@ -72,7 +72,7 @@ export const ProgrammsList = (props: ProgrammsListProps) => {
         {spiderData ? (
           <Paginator
             page={{
-              items: [spiderData.map((_, idx) => `${idx}`)],
+              items: [...spiderData.map((_, idx) => idx)],
               totalItems: spiderData?.length,
               totalPages: Math.ceil(spiderData?.length / 8),
               currentPage: page,

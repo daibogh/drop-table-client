@@ -6,6 +6,8 @@ export interface Program {
     disciplines: Discipline[]
     created_at?: string
     deleted_at?: string
+    is_deleted?: boolean
+    rating?: number
     id: number
     parameters: Parameter[]
   }

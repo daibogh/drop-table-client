@@ -1,13 +1,14 @@
 import uniqBy from 'lodash/fp/uniqBy';
+import { Program } from 'data/programs/model';
 
-type Program = {
-  id: number
-  name: string
-  is_deleted: boolean
-  disciplines: string[]
-  rating: number
-  category: string
-}
+// type Program = {
+//   id: number
+//   name: string
+//   is_deleted: boolean
+//   disciplines: string[]
+//   rating: number
+//   category: string
+// }
 type Link = {
   source: string;
   target: string
@@ -36,7 +37,7 @@ const categoriesMap = new Map([
 export const calculateGraphData = (data: Program[]) => {
   const result: {
     links: Link[]
-    nodes: { id: string; rating: number; x: string; y: string }[]
+    nodes: { id: string; rating: number; x: number; y: number; size: number }[]
   } = {
     links: [],
     nodes: []
@@ -58,8 +59,9 @@ export const calculateGraphData = (data: Program[]) => {
   const uniqueLinks: { [key: string]: number } = {};
   uniqBy((p) => p.name, data).forEach((p, idx) => {
     const node = {
-      id: p.name,
+      id: `${p.name} ${p?.is_deleted ? '(программа закрыта)' : ''}`,
       rating: p.rating,
+      fontColor: p?.is_deleted ? 'red' : '#000',
       x: Math.floor(Math.random() * 500) + 1000,
       y: Math.floor(Math.random() * 500),
       size: 30000,
@@ -67,8 +69,8 @@ export const calculateGraphData = (data: Program[]) => {
     };
     ratingOverall += p.rating;
     p.disciplines.forEach(d => {
-      if (links[d]) {
-        links[d].forEach((n) => {
+      if (links[d.name + d.category]) {
+        links[d.name + d.category].forEach((n) => {
           if (node.rating > n.rating) {
             notUniqueLinks.push({
               ...linkDefault,
@@ -81,10 +83,10 @@ export const calculateGraphData = (data: Program[]) => {
             });
           }
 
-//         });
-//       } else {
-//         links[d] = [node];
-//       }
+        });
+      } else {
+        links[d.name + d.category] = [node];
+      }
 
     });
     result.nodes.push(node);
@@ -93,5 +95,6 @@ export const calculateGraphData = (data: Program[]) => {
     node.size *= (node.rating / ratingOverall);
   });
   result.links = uniqBy(({ source, target }) => `${source}-${target}`, notUniqueLinks);
+  console.log()
   return result;
 };

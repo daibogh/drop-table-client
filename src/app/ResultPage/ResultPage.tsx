@@ -43,7 +43,7 @@ const labels = [
 ];
 
 export const ResultPage: React.FC<ResultPageProps> = ({ className }) => {
-  const params = useMatchParams<{id: number}>();
+  const params = useMatchParams<{ id: number }>();
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -60,59 +60,59 @@ export const ResultPage: React.FC<ResultPageProps> = ({ className }) => {
 
   return (
     <Page title="Результаты анализа программы">
-    {model && <Line h="100" vertical pt="3" w="100" className={`ResultPage ${className}`}>
-      <Line vertical h="50" mb="1">
-        <Line vertical>
-          <div className="Title">{model?.name}</div>
-          <div className="Cod">09.03.04</div>
-        </Line>
-        <Line mt="4" h="75" w="100">
-          <Line w="50" className="Block" p="2" vertical>
-            <div className="sector-title">Паспорт программы</div>
-            <Line vertical className="field" mb="2">
-              <div className="description-title">Описание</div>
-              <div className="description">{model?.description?.slice(0, 400) ?? ''}</div>
-            </Line>
-            <Line className="field" mb="2" alignItems="center">
-              <div><span className="description-title">Количество академических часов:</span> {model?.hours}</div>
-            </Line>
-            <Line className="field" mb="2" alignItems="center">
-              <div><span className="description-title">Количество дисциплин:</span> {model?.disciplines?.length ?? 0}</div>
-            </Line>
-            <Line justifyContent="end" mr="2" mt="4">
-              <Button small btn="secondary" className="change-button" onClick={onChange}>
-                Изменить
+      {model && <Line h="100" vertical pt="3" w="100" className={`ResultPage ${className}`}>
+        <Line vertical h="50" mb="1">
+          <Line vertical>
+            <div className="Title">{model?.name}</div>
+            <div className="Cod">09.03.04</div>
+          </Line>
+          <Line mt="4" h="75" w="100">
+            <Line w="50" className="Block" p="2" vertical>
+              <div className="sector-title">Паспорт программы</div>
+              <Line vertical className="field" mb="2">
+                <div className="description-title">Описание</div>
+                <div className="description">{model?.description?.slice(0, 400) ?? ''}</div>
+              </Line>
+              <Line className="field" mb="2" alignItems="center">
+                <div><span className="description-title">Количество академических часов:</span> {model?.hours}</div>
+              </Line>
+              <Line className="field" mb="2" alignItems="center">
+                <div><span className="description-title">Количество дисциплин:</span> {model?.disciplines?.length ?? 0}</div>
+              </Line>
+              <Line justifyContent="end" mr="2" mt="4">
+                <Button small btn="secondary" className="change-button" onClick={onChange}>
+                  Изменить
               </Button>
               </Line>
             </Line>
             <Line w="50" className="Block" p="2" vertical>
               <div className="sector-title">Веса критериев</div>
-              {values.length > 0 && <Pie
+              <Pie
                 data={{
                   labels,
-                  datasets: [{ backgroundColor, data: values }]
+                  datasets: [{ backgroundColor, data: model.parameters?.map(x => parseInt(x.value) * x.weight) ?? [] }]
                 }}
                 options={{
                   legend: {
                     display: false
                   }
                 }}
-              />}
+              />
             </Line>
           </Line>
           <Line w="50" className="Block" p="2" vertical>
             <div className="sector-title">Веса критериев</div>
-             <Pie
+            <Pie
               data={{
                 labels,
-                datasets: [{backgroundColor, data: model.parameters?.map(x => parseInt(x.value) * x.weight) ?? []}]
+                datasets: [{ backgroundColor, data: model.parameters?.map(x => parseInt(x.value) * x.weight) ?? [] }]
               }}
               options={{
-                legend:{
+                legend: {
                   display: false
                 }
-            }}
-          />
+              }}
+            />
           </Line>
         </Line>
         <Line mb="2" h="50" className="Block" p="2" vertical>
@@ -131,8 +131,7 @@ export const ResultPage: React.FC<ResultPageProps> = ({ className }) => {
             </Line>
           </Line>
         </Line>
-      </Line>
-    </Line>}
+      </Line>}
     </Page>
   );
 };

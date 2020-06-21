@@ -5,7 +5,7 @@ import { useToggle } from "react-use";
 import { useSelector } from "react-redux";
 import { SelectField } from "shared/fields";
 import { Toggle } from "app/Toggle/Toggle";
-// import { ProgramsGraph } from "app/ProgramsGraph/ProgramsGraph";
+import { ProgramsGraph } from "app/ProgramsGraph/ProgramsGraph";
 import { StoreType } from "core/store";
 import { ProgrammsList } from "app/ProgrammsList/ProgrammsList";
 
@@ -59,9 +59,8 @@ export const ProgramListPage: React.FC<ProgramListPageProps> = ({
           {isList ? (
             <ProgrammsList category={category} />
           ) : (
-            // <ProgramsGraph />
-            <></>
-          )}
+              <ProgramsGraph category={category} />
+            )}
         </div>
       </Line>
     </Page>

@@ -30,6 +30,7 @@ const config: Partial<GraphConfiguration<any, any>> = {
     gravity: -1050,
     linkLength: 120,
     linkStrength: 2,
+    disableLinkForce: true
   },
   node: {
     color: "#d3d3d3",
@@ -83,9 +84,7 @@ export const ProgramsGraph = (props) => {
     `${baseUrl}/program/spider?${params}`,
     async (url: string) => (await fetch(url)).json()
   );
-  console.log(error);
   const d = useMemo(() => data && calculateGraphData(data), [data]);
-  console.log({ graph: data });
   if (!data) {
     return <>данные обрабатываются... </>;
   }
