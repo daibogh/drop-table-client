@@ -59,7 +59,7 @@ const config: Partial<GraphConfiguration<any, any>> = {
     mouseCursor: "pointer",
     opacity: 1,
     semanticStrokeWidth: true,
-    strokeWidth: 3,
+    strokeWidth: 1,
     type: "STRAIGHT",
   },
   // nodeHighlightBehavior: true,
