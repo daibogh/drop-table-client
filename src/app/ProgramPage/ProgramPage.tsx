@@ -83,7 +83,7 @@ export const ProgramPage: React.FC = () => {
     category: "",
     disciplines: [],
     created_at: "2020-06-21T00:10:12.502Z",
-    deleted_at: "2020-06-21T00:10:12.502Z",
+    // deleted_at: "2020-06-21T00:10:12.502Z",
     parameters: parametrs,
   });
 
@@ -113,7 +113,7 @@ export const ProgramPage: React.FC = () => {
         category: "",
         disciplines: [],
         created_at: "2020-06-21T00:10:12.502Z",
-        deleted_at: "2020-06-21T00:10:12.502Z",
+        // deleted_at: "2020-06-21T00:10:12.502Z",
         parameters: parametrs,
       });
   }, [history, dispatch, parametrs, program]);
