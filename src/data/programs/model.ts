@@ -18,7 +18,7 @@ export interface Program {
     weight: number
     value?: string
   }
-  export interface NewProgram{
+  export interface NewProgram {
     name: string
     description?: string
     hours?: number
@@ -39,3 +39,23 @@ export interface Program {
   }
   
   export interface ValidationError{ loc: string[]; msg: string; type: string }
+
+  export interface MiniDiscipline {
+    id: number;
+    name: string;
+  }
+
+  export interface YearDiff {
+    added: MiniDiscipline[],
+    removed: MiniDiscipline[]
+  }
+
+  export interface YearStats {
+    diff: YearDiff,
+    rating?: 0
+  }
+
+  export interface Stats {
+    ok: boolean;
+    data: YearStats[]
+  }

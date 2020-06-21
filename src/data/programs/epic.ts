@@ -8,6 +8,8 @@ import {
   createDiscipline,
   createProgram,
   getParametrs,
+  getStats,
+  getProgram,
 } from "./api";
 import {
   getProgramsAsync,
@@ -15,6 +17,10 @@ import {
   getDisciplinesAsync,
   setDisciplines,
   createDisciplineAsync,
+  getStatsAsync,
+  setStats,
+  getProgramAsync,
+  setProgram,
   createProgramAsync,
   getParametrsAsync,
   setParametrs,
@@ -42,6 +48,18 @@ const createDisciplineEpic = createEpic(createDisciplineAsync, (data) => {
   );
 });
 
+const getStatsEpic = createEpic(getStatsAsync, (data) => {
+  return getStats().pipe(
+    map((response) => setStats(response))
+  );
+});
+
+const getProgramEpic = createEpic<{ id: number }>(getProgramAsync, (data) => {
+  return getProgram(data.id).pipe(
+    map((response) => setProgram(response))
+  );
+});
+
 const createProgramEpic = createEpic(createProgramAsync, (data) => {
   return createProgram(data).pipe(ignoreElements());
 });
@@ -51,9 +69,11 @@ const getParametrsEpic = createEpic(getParametrsAsync, () => {
 });
 
 export const programsEpic = combineEpics(
-  getProgramsEpic,
-  getDisciplinesEpic,
-  createDisciplineEpic,
+  getProgramsEpic, 
+  getDisciplinesEpic, 
+  createDisciplineEpic, 
+  getStatsEpic, 
+  getProgramEpic,
   createProgramEpic,
   getParametrsEpic
 );

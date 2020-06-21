@@ -38,6 +38,13 @@ export function createDiscipline(
 ) {
   return http.post(baseUrl + "/discipline", { name, category, parametrs });
 }
+export function getStats() {
+  return http.get(baseUrl + "/program/stats");
+}
+
+export function getProgram(id: number) {
+  return http.get(baseUrl + `/program/%7Bid%7D?program_id=${id}`);
+}
 
 export function createProgram(program: NewProgram) {
   return http.post(baseUrl + "/program", JSON.stringify(program));

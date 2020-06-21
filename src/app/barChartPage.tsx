@@ -1,17 +1,30 @@
-import React from "react";
-import { Line } from "shared/base";
-import { Bar } from "react-chartjs-2";
-
-import { Page } from "./page/Page/Page";
+import React from 'react';
+import { Line } from 'shared/base';
+import { Page } from './page/Page/Page';
+import { Bar } from 'react-chartjs-2';
 
 const backgroundColor = [
-  "#89B6A5",
-  "#4C3B4D",
-  "#C9EDDC",
-  "#82968C",
-  "#6A706E",
-  "#FFC857",
-  "#B4A0E5",
+  '#89B6A5',
+  '#4C3B4D',
+  '#C9EDDC',
+  '#82968C',
+  '#6A706E',
+  '#FFC857',
+  '#B4A0E5',
+  '#89B6A5',
+  '#4C3B4D',
+  '#C9EDDC',
+  '#82968C',
+  '#6A706E',
+  '#FFC857',
+  '#B4A0E5',
+  '#89B6A5',
+  '#4C3B4D',
+  '#C9EDDC',
+  '#82968C',
+  '#6A706E',
+  '#FFC857',
+  '#B4A0E5'
 ];
 
 export const BarChartPage: React.FC = () => {

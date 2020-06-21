@@ -31,5 +31,12 @@ export const createDisciplineAsync = createAction<{
   category: string;
   parametrs: Parameter[];
 }>(ActionType.PROGRAM_CREATEDISCIPLINEASYNC);
+export const getStatsAsync = createAction(ActionType.PROGRAM_GETSTATSASYNC);
+
+export const setStats = createAction(ActionType.PROGRAM_SETSTATS);
+
+export const getProgramAsync = createAction<{ id: number }>(ActionType.PROGRAM_GETPROGRAMASYNC);
+
+export const setProgram = createAction(ActionType.PROGRAM_SETPROGRAM);
 
 export const createProgramAsync = createAction<NewProgram>(ActionType.PROGRAM_CREATEPROGRAMASYNC);
