@@ -3,13 +3,13 @@ import useSWR from 'swr';
 import { http } from "core/http";
 import { Graph, GraphConfiguration } from "react-d3-graph";
 import { baseUrl } from 'app/constants';
-
-import './ProgramsGraph.scss';
 import queryString from "query-string";
 import { props } from 'lodash/fp';
 import { Program } from 'data/programs/model';
 
 import { calculateGraphData } from './util';
+
+import './ProgramsGraph.scss';
 
 const config: Partial<GraphConfiguration<any, any>> = {
   directed: true,

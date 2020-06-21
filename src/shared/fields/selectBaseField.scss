@@ -2,6 +2,9 @@
 
 .multiselect {
   cursor: pointer;
+  .form-control{
+    border-radius: 0.6rem;
+  }
   &.inline {
     display: flex;
     align-items: center;
@@ -17,6 +20,7 @@
     position: relative;
     height: auto;
     line-height: 1em;
+    width: 15em;
     &.cell {
       padding: 0.19em 0.19em;
       height: 2.2em !important;
@@ -128,7 +132,7 @@
   }
   .container.active {
     border-color: $light-grey !important;
-    border-radius: 0.2em;
+    border-radius: 0.6rem;
   }
 
   .container.disable {

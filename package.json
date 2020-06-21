@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --mode development --open",
-    "start": "MODE=dev webpack-dev-server --mode development",
-    "build": "MODE=prod webpack --mode production",
+    "build": "webpack --mode production",
     "test": "jest"
   },
   "keywords": [],
@@ -72,6 +71,7 @@
     "react": "^16.12.0",
     "react-chartjs-2": "^2.9.0",
     "react-d3-graph": "^2.4.1",
+    "react-chartjs-2": "^2.9.0",
     "react-datepicker": "^2.13.0",
     "react-dom": "^16.12.0",
     "react-redux": "^7.1.3",

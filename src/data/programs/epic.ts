@@ -2,13 +2,22 @@ import { createEpic } from "core/epic";
 import { map, ignoreElements } from "rxjs/operators";
 import { combineEpics } from "redux-observable";
 
-import { getPrograms, getDisciplines, createDiscipline } from "./api";
+import {
+  getPrograms,
+  getDisciplines,
+  createDiscipline,
+  createProgram,
+  getParametrs,
+} from "./api";
 import {
   getProgramsAsync,
   setPrograms,
   getDisciplinesAsync,
   setDisciplines,
   createDisciplineAsync,
+  createProgramAsync,
+  getParametrsAsync,
+  setParametrs,
 } from "./actions";
 
 const getProgramsEpic = createEpic(getProgramsAsync, (data) => {
@@ -33,4 +42,18 @@ const createDisciplineEpic = createEpic(createDisciplineAsync, (data) => {
   );
 });
 
-export const programsEpic = combineEpics(getProgramsEpic, getDisciplinesEpic, createDisciplineEpic);
+const createProgramEpic = createEpic(createProgramAsync, (data) => {
+  return createProgram(data).pipe(ignoreElements());
+});
+
+const getParametrsEpic = createEpic(getParametrsAsync, () => {
+  return getParametrs().pipe(map((response) => setParametrs(response)));
+});
+
+export const programsEpic = combineEpics(
+  getProgramsEpic,
+  getDisciplinesEpic,
+  createDisciplineEpic,
+  createProgramEpic,
+  getParametrsEpic
+);

@@ -10,12 +10,11 @@ export interface Program {
     parameters: Parameter[]
   }
   
-  export interface Discipline { id: number; name: string; category: string }
+  export interface Discipline { id?: number; name: string; category: string }
   
   export interface Parameter{
-    id: number
-    name: string
-    type: string
+    id?: number
+    name?: string
     weight: number
     value?: string
   }
@@ -24,9 +23,10 @@ export interface Program {
     description?: string
     hours?: number
     category?: string
-    disciplines: Discipline[]
+    disciplines: number[]
     created_at?: string
     deleted_at?: string
+    parameters?:Parameter[]
   }
   
   export interface Error{

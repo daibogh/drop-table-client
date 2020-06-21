@@ -6,6 +6,7 @@ import { faAngleDown } from '@fortawesome/free-solid-svg-icons/faAngleDown';
 import { faSearch } from '@fortawesome/free-solid-svg-icons/faSearch';
 import { faList } from '@fortawesome/free-solid-svg-icons/faList';
 import { faChartBar } from '@fortawesome/free-solid-svg-icons/faChartBar';
+import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
 //regular
 import { faPlusSquare } from '@fortawesome/free-regular-svg-icons/faPlusSquare';
 //
@@ -23,6 +24,7 @@ library.add(
   faSearch,
   faList,
   faChartBar,
+  faPlus,
   //regular
   faPlusSquare
 );
@@ -35,6 +37,7 @@ export type ImportedIcon =
   | 'list'
   | 'plus-square'
   | 'chart-bar'
+  | 'plus'
 
 export interface Props extends SpaceProps, React.HTMLAttributes<any> {
   className?: string

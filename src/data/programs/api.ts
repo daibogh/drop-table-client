@@ -1,7 +1,7 @@
 import { http } from "core/http";
 import { baseUrl } from "app/constants";
 
-import { Program, Discipline, Parameter } from "./model";
+import { Program, Discipline, Parameter, NewProgram } from "./model";
 
 export function getPrograms(
   offset: number,
@@ -37,4 +37,12 @@ export function createDiscipline(
   parametrs: Parameter[]
 ) {
   return http.post(baseUrl + "/discipline", { name, category, parametrs });
+}
+
+export function createProgram(program: NewProgram) {
+  return http.post(baseUrl + "/program", JSON.stringify(program));
+}
+
+export function getParametrs() {
+  return http.get<Parameter[]>(baseUrl + "/parameter");
 }
