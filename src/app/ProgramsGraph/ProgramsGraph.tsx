@@ -34,10 +34,10 @@ const config: Partial<GraphConfiguration<any, any>> = {
   node: {
     color: "#d3d3d3",
     fontColor: "black",
-    fontSize: 3,
+    fontSize: 8,
     fontWeight: "normal",
     highlightColor: "red",
-    highlightFontSize: 14,
+    highlightFontSize: 20,
     highlightFontWeight: "bold",
     highlightStrokeColor: "red",
     highlightStrokeWidth: 1.5,
@@ -77,7 +77,7 @@ const config: Partial<GraphConfiguration<any, any>> = {
   // },
   // directed: true
 };
-export const ProgramsGraph = () => {
+export const ProgramsGraph = (props) => {
   const params = queryString.stringify(props);
   const { data, error } = useSWR<Program[], Program[]>(
     `${baseUrl}/program/spider?${params}`,
