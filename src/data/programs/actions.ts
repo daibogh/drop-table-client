@@ -23,8 +23,12 @@ export const setDisciplines = createAction<Discipline[]>(
   ActionType.PROGRAM_SETDISCIPLINES
 );
 
-export const getParametrsAsync = createAction(ActionType.PROGRAM_GETPARAMETRSASYNC);
-export const setParametrs = createAction<Parameter[]>(ActionType.PROGRAM_SETPARAMETRS);
+export const getParametrsAsync = createAction(
+  ActionType.PROGRAM_GETPARAMETRSASYNC
+);
+export const setParametrs = createAction<Parameter[]>(
+  ActionType.PROGRAM_SETPARAMETRS
+);
 
 export const createDisciplineAsync = createAction<{
   name: string;
@@ -35,8 +39,17 @@ export const getStatsAsync = createAction(ActionType.PROGRAM_GETSTATSASYNC);
 
 export const setStats = createAction(ActionType.PROGRAM_SETSTATS);
 
-export const getProgramAsync = createAction<{ id: number }>(ActionType.PROGRAM_GETPROGRAMASYNC);
+export const getProgramAsync = createAction<{ id: number }>(
+  ActionType.PROGRAM_GETPROGRAMASYNC
+);
 
 export const setProgram = createAction(ActionType.PROGRAM_SETPROGRAM);
 
-export const createProgramAsync = createAction<NewProgram>(ActionType.PROGRAM_CREATEPROGRAMASYNC);
+export const createProgramAsync = createAction<{
+  newProgram: NewProgram;
+  onResponseCallback: (program: Program) => void;
+}>(ActionType.PROGRAM_CREATEPROGRAMASYNC);
+
+export const updateProgramAsync = createAction<NewProgram>(
+  ActionType.PROGRAM_UPDATEPROGRAMASYNC
+);

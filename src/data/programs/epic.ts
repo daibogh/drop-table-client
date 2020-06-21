@@ -1,5 +1,5 @@
 import { createEpic } from "core/epic";
-import { map, ignoreElements } from "rxjs/operators";
+import { map, ignoreElements, tap } from "rxjs/operators";
 import { combineEpics } from "redux-observable";
 
 import {
@@ -10,6 +10,7 @@ import {
   getParametrs,
   getStats,
   getProgram,
+  updateProgram,
 } from "./api";
 import {
   getProgramsAsync,
@@ -24,6 +25,7 @@ import {
   createProgramAsync,
   getParametrsAsync,
   setParametrs,
+  updateProgramAsync,
 } from "./actions";
 
 const getProgramsEpic = createEpic(getProgramsAsync, (data) => {
@@ -49,31 +51,35 @@ const createDisciplineEpic = createEpic(createDisciplineAsync, (data) => {
 });
 
 const getStatsEpic = createEpic(getStatsAsync, (data) => {
-  return getStats().pipe(
-    map((response) => setStats(response))
-  );
+  return getStats().pipe(map((response) => setStats(response)));
 });
 
 const getProgramEpic = createEpic<{ id: number }>(getProgramAsync, (data) => {
-  return getProgram(data.id).pipe(
-    map((response) => setProgram(response))
-  );
+  return getProgram(data.id).pipe(map((response) => setProgram(response)));
 });
 
 const createProgramEpic = createEpic(createProgramAsync, (data) => {
-  return createProgram(data).pipe(ignoreElements());
+  return createProgram(data.newProgram).pipe(
+    tap((response) => data.onResponseCallback(response)),
+    ignoreElements()
+  );
 });
 
 const getParametrsEpic = createEpic(getParametrsAsync, () => {
   return getParametrs().pipe(map((response) => setParametrs(response)));
 });
 
+const updateProgramEpic = createEpic(updateProgramAsync, (data) => {
+  return updateProgram(data).pipe(ignoreElements());
+});
+
 export const programsEpic = combineEpics(
-  getProgramsEpic, 
-  getDisciplinesEpic, 
-  createDisciplineEpic, 
-  getStatsEpic, 
+  getProgramsEpic,
+  getDisciplinesEpic,
+  createDisciplineEpic,
+  getStatsEpic,
   getProgramEpic,
   createProgramEpic,
-  getParametrsEpic
+  getParametrsEpic,
+  updateProgramEpic
 );

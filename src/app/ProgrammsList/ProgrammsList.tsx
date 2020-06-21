@@ -40,9 +40,7 @@ export const ProgrammsList = (props: ProgrammsListProps) => {
     return <>данные обрабатываются... </>;
   }
   const chunkedPrograms = chunk(4, programs);
-  console.log(chunkedPrograms);
 
-  console.log({ length: spiderData && spiderData.length });
   return (
     <Line vertical>
       <Line>

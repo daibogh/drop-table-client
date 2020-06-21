@@ -18,11 +18,15 @@ import {
   createProgramAsync,
   getParametrsAsync,
   getDisciplinesAsync,
+  getProgramAsync,
+  updateProgramAsync,
 } from "data/programs/actions";
 import { DateTime } from "shared/base/utils/dateTime";
 import { getParametrs } from "data/programs/api";
 import { SelectField, MultiselectField } from "shared/fields";
 import "./ProgramPage.scss";
+import { useHistory } from "react-router";
+import { hi } from "date-fns/locale";
 
 export const categoriesMap = new Map([
   ["", "все"],
@@ -50,48 +54,115 @@ export const categoriesMap = new Map([
 export const ProgramPage: React.FC = () => {
   const dispatch = useDispatch();
 
-  const { parametrs, disciplines } = useSelector(
+  const { parametrs, disciplines, program } = useSelector(
     (state: StoreType) => state.programs
   );
-
+  const history = useHistory();
   const [localParamters, setLocalParametrs] = useState<Parameter[]>(parametrs);
   const [localDisciplines, setLocalDisciplines] = useState<string[]>([]);
   const [category, setCategory] = useState<string | undefined>("");
 
   useEffect(() => {
-    dispatch(getDisciplinesAsync({ category: "", offset: 1, limit: 20 }));
+    dispatch(getDisciplinesAsync({ category: "", offset: 2, limit: 20 }));
     dispatch(getParametrsAsync());
   }, [dispatch]);
 
   useEffect(() => {
-    if (parametrs.length > 0 && localParamters.length === 0)
+    if (
+      parametrs.length > 0 &&
+      localParamters.length === 0 &&
+      history.location.pathname == "/create"
+    )
       setLocalParametrs(parametrs);
-  }, [localParamters, parametrs]);
+  }, [localParamters, parametrs, history]);
 
-  const [program, setProgram] = useState<NewProgram>({
-    name: "Программная инженерия",
-    description: "Успешная программа",
-    hours: 1252,
-    category: "Программирование",
+  const [localProgram, setLocalProgram] = useState<Program>({
+    name: "",
+    description: "",
+    hours: 0,
+    category: "",
     disciplines: [],
     created_at: "2020-06-21T00:10:12.502Z",
     deleted_at: "2020-06-21T00:10:12.502Z",
     parameters: parametrs,
   });
 
+  useMemo(() => {
+    console.log("HISTORY ", history);
+  }, [history]);
+
+  console.log(program);
+  useEffect(() => {
+    if (history.location.pathname !== "/create") {
+      dispatch(
+        getDisciplinesAsync({
+          category: program.category,
+          offset: 1,
+          limit: 20,
+        })
+      );
+      setLocalProgram(program);
+      setCategory(program.category);
+      setLocalParametrs(program.parameters);
+      setLocalDisciplines(program.disciplines.map((x) => x.name));
+    } else
+      setLocalProgram({
+        name: "",
+        description: "",
+        hours: 0,
+        category: "",
+        disciplines: [],
+        created_at: "2020-06-21T00:10:12.502Z",
+        deleted_at: "2020-06-21T00:10:12.502Z",
+        parameters: parametrs,
+      });
+  }, [history, dispatch, parametrs, program]);
+
   const onSave = useCallback(() => {
     const arr = disciplines.flatMap((x) =>
       localDisciplines.includes(x.name) ? [x.id] : []
     );
-    dispatch(
-      createProgramAsync({
-        ...program,
-        category: category,
-        parameters: parametrs,
-        disciplines: arr,
-      })
-    );
-  }, [dispatch, program, localDisciplines, disciplines, category, parametrs]);
+    if (history.location.pathname !== "/create") {
+      dispatch(
+        updateProgramAsync(
+          {
+            ...localProgram,
+            category: category,
+            parameters: parametrs,
+            disciplines: arr,
+          },
+          undefined,
+          (error) => {
+            if (error == null) {
+              history.push(`/result/${localProgram.id}`);
+            }
+          }
+        )
+      );
+    } else {
+      dispatch(
+        createProgramAsync({
+          newProgram: {
+            ...localProgram,
+            category: category,
+            parameters: parametrs,
+            disciplines: arr,
+          },
+          onResponseCallback: (response: Program) => {
+            history.push(`/result/${response.id}`);
+          },
+        })
+      );
+    }
+  }, [
+    dispatch,
+    localProgram,
+    localDisciplines,
+    disciplines,
+    category,
+    parametrs,
+    history,
+  ]);
 
   const setParametr = useCallback(
     (v: Parameter, val: number | string, type: string) => {
@@ -166,23 +237,27 @@ export const ProgramPage: React.FC = () => {
             <div className="part-title">Паспорт программы</div>
             <TextBoxField
               name="title"
-              value={program.name}
-              onChange={(v) => setProgram({ ...program, name: v })}
+              value={localProgram.name}
+              onChange={(v) => setLocalProgram({ ...localProgram, name: v })}
               mb="2"
             >
               Название
             </TextBoxField>
             <TextareaField
               name="description"
-              value={program.description}
-              onChange={(v) => setProgram({ ...program, description: v })}
+              value={localProgram.description}
+              onChange={(v) =>
+                setLocalProgram({ ...localProgram, description: v })
+              }
             >
               Описание
             </TextareaField>
             <TextBoxField
               name="hours"
-              value={program.hours.toString()}
-              onChange={(v) => setProgram({ ...program, hours: parseInt(v) })}
+              value={localProgram.hours.toString()}
+              onChange={(v) =>
+                setLocalProgram({ ...localProgram, hours: parseInt(v) })
+              }
               type="number"
               mt="2"
             >

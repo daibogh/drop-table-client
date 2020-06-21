@@ -47,9 +47,16 @@ export function getProgram(id: number) {
 }
 
 export function createProgram(program: NewProgram) {
-  return http.post(baseUrl + "/program", JSON.stringify(program));
+  return http.post<Program>(baseUrl + "/program", JSON.stringify(program));
 }
 
 export function getParametrs() {
   return http.get<Parameter[]>(baseUrl + "/parameter");
+}
+
+export function updateProgram(program: NewProgram) {
+  return http.patch(
+    baseUrl + `/program/%7Bid%7D?program_id=${program.id}`,
+    JSON.stringify(program)
+  );
 }
