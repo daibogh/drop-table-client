@@ -8,7 +8,7 @@ import { Page } from 'app/page/Page/Page';
 import { Button } from 'shared/base';
 import { useHistory } from 'react-router';
 import { Pie } from 'react-chartjs-2';
-
+import { StudentsByYearChart } from 'app/StudentsByYearChart/StudentsByYearChart'
 import './ResultPage.scss';
 import { getProgramAsync } from 'data/programs/actions';
 
@@ -16,7 +16,7 @@ interface ResultPageProps {
   className?: string;
 }
 
-const backgroundColor =  [
+const backgroundColor = [
   '#CBD4C2',
   '#DBEBC0',
   '#C3B299',
@@ -83,6 +83,21 @@ export const ResultPage: React.FC<ResultPageProps> = ({ className }) => {
               <Button small btn="secondary" className="change-button" onClick={onChange}>
                 Изменить
               </Button>
+              </Line>
+            </Line>
+            <Line w="50" className="Block" p="2" vertical>
+              <div className="sector-title">Веса критериев</div>
+              {values.length > 0 && <Pie
+                data={{
+                  labels,
+                  datasets: [{ backgroundColor, data: values }]
+                }}
+                options={{
+                  legend: {
+                    display: false
+                  }
+                }}
+              />}
             </Line>
           </Line>
           <Line w="50" className="Block" p="2" vertical>
@@ -100,18 +115,21 @@ export const ResultPage: React.FC<ResultPageProps> = ({ className }) => {
           />
           </Line>
         </Line>
-      </Line>
-      <Line mb="2" h="50" className="Block" p="2" vertical>
-        <Line className="sector-title" mb="2">Критерии анализа</Line>
+        <Line mb="2" h="50" className="Block" p="2" vertical>
           <Line>
+
             <Line w="50" vertical className="criteries" mr="2">
-              {model?.parameters?.map((x, i) => (
-              <Line justifyContent="between" key={i}>
-                <div>{x.name}</div>
-                <div className="value">{x.value ?? ''}</div>
-              </Line>))}
+              <Line className="sector-title" mb="2">Критерии анализа</Line>
+              {model?.parameters.map((x, i) => (
+                <Line justifyContent="between" key={i}>
+                  <div>{x.name}</div>
+                  <div className="value">{x.value ?? ''}</div>
+                </Line>))}
             </Line>
-            <Line>Line graph</Line>
+            <Line w="50" className="Block">
+              <StudentsByYearChart />
+            </Line>
+          </Line>
         </Line>
       </Line>
     </Line>}

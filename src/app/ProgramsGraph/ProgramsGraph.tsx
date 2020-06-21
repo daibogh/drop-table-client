@@ -85,7 +85,7 @@ export const ProgramsGraph = (props) => {
   );
   console.log(error);
   const d = useMemo(() => data && calculateGraphData(data), [data]);
-  console.log({ graph: data })
+  console.log({ graph: data });
   if (!data) {
     return <>данные обрабатываются... </>;
   }
