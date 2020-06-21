@@ -46,7 +46,7 @@ export const ProgrammsList = (props: ProgrammsListProps) => {
   return (
     <Line vertical>
       <Line>
-        {chunkedPrograms?.[0].map((program, pidx) => (
+        {chunkedPrograms?.[0]?.map((program, pidx) => (
           <Line pb="1" w="25" key={program.id}>
             <Card
               id={program.id}
@@ -57,7 +57,7 @@ export const ProgrammsList = (props: ProgrammsListProps) => {
         ))}
       </Line>
       <Line>
-        {chunkedPrograms?.[1].map((program, pidx) => (
+        {chunkedPrograms?.[1]?.map((program, pidx) => (
           <Line pb="1" w="25" key={program.id}>
             <Card
               id={program.id}
@@ -72,7 +72,7 @@ export const ProgrammsList = (props: ProgrammsListProps) => {
         {spiderData ? (
           <Paginator
             page={{
-              items: [...spiderData.map((_, idx) => idx)],
+              items: [...spiderData?.map((_, idx) => idx)],
               totalItems: spiderData?.length,
               totalPages: Math.ceil(spiderData?.length / 8),
               currentPage: page,

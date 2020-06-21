@@ -8,7 +8,7 @@ import { Page } from 'app/page/Page/Page';
 import { Button } from 'shared/base';
 import { useHistory } from 'react-router';
 import { Pie } from 'react-chartjs-2';
-import { StudentsByYearChart } from 'app/StudentsByYearChart/StudentsByYearChart'
+import { StudentsByYearChart } from 'app/StudentsByYearChart/StudentsByYearChart';
 import './ResultPage.scss';
 import { getProgramAsync } from 'data/programs/actions';
 
@@ -48,7 +48,6 @@ export const ResultPage: React.FC<ResultPageProps> = ({ className }) => {
   const dispatch = useDispatch();
 
   const model = useSelector((state: StoreType) => state.programs.program);
-  console.log(model);
 
   useEffect(() => {
     if (params?.id) dispatch(getProgramAsync({ id: params.id }));
@@ -66,7 +65,8 @@ export const ResultPage: React.FC<ResultPageProps> = ({ className }) => {
             <div className="Title">{model?.name}</div>
             <div className="Cod">09.03.04</div>
           </Line>
-          <Line mt="4" h="75" w="100">
+          <Line>
+          <Line mt="2" h="75" w="100">
             <Line w="50" className="Block" p="2" vertical>
               <div className="sector-title">Паспорт программы</div>
               <Line vertical className="field" mb="2">
@@ -86,21 +86,6 @@ export const ResultPage: React.FC<ResultPageProps> = ({ className }) => {
               </Line>
             </Line>
             <Line w="50" className="Block" p="2" vertical>
-              <div className="sector-title">Веса критериев</div>
-              <Pie
-                data={{
-                  labels,
-                  datasets: [{ backgroundColor, data: model.parameters?.map(x => parseInt(x.value) * x.weight) ?? [] }]
-                }}
-                options={{
-                  legend: {
-                    display: false
-                  }
-                }}
-              />
-            </Line>
-          </Line>
-          <Line w="50" className="Block" p="2" vertical>
             <div className="sector-title">Веса критериев</div>
             <Pie
               data={{
@@ -114,10 +99,11 @@ export const ResultPage: React.FC<ResultPageProps> = ({ className }) => {
               }}
             />
           </Line>
+          </Line>
         </Line>
-        <Line mb="2" h="50" className="Block" p="2" vertical>
+        </Line>
+        <Line mt="1" h="50" className="Block" p="2" vertical>
           <Line>
-
             <Line w="50" vertical className="criteries" mr="2">
               <Line className="sector-title" mb="2">Критерии анализа</Line>
               {model?.parameters.map((x, i) => (
@@ -126,7 +112,7 @@ export const ResultPage: React.FC<ResultPageProps> = ({ className }) => {
                   <div className="value">{x.value ?? ''}</div>
                 </Line>))}
             </Line>
-            <Line w="50" className="Block">
+            <Line w="50" className="Block" ml="4">
               <StudentsByYearChart />
             </Line>
           </Line>

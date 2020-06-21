@@ -95,6 +95,5 @@ export const calculateGraphData = (data: Program[]) => {
     node.size *= (node.rating / ratingOverall);
   });
   result.links = uniqBy(({ source, target }) => `${source}-${target}`, notUniqueLinks);
-  console.log()
   return result;
 };

@@ -6,7 +6,6 @@ import { StoreType } from 'core/store';
 import { getStatsAsync } from 'data/programs/actions';
 
 import { Page } from './page/Page/Page';
-import { YearDiff } from 'data/programs/model';
 
 const backgroundColor = [
   '#89B6A5',
