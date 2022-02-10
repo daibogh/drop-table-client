@@ -27,7 +27,7 @@
     "geckodriver": "^1.19.1",
     "html-webpack-plugin": "^3.2.0",
     "jest": "^25.4.0",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "query-string": "^6.12.1",
     "sass-loader": "^8.0.0",
     "selenium-webdriver": "^3.6.0",
